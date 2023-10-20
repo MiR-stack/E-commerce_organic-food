@@ -1,0 +1,35 @@
+{
+  "name": "e-commerce-new",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@ckeditor/strapi-plugin-ckeditor": "^0.0.7",
+    "@strapi/plugin-i18n": "4.11.7",
+    "@strapi/plugin-seo": "^1.9.2",
+    "@strapi/plugin-users-permissions": "4.11.7",
+    "@strapi/provider-upload-cloudinary": "^4.12.4",
+    "@strapi/strapi": "4.11.7",
+    "pg": "8.8.0",
+    "strapi-plugin-comments": "^2.2.11",
+    "strapi-plugin-generate-data": "^1.0.23"
+  },
+  "author": {
+    "name": "MD. Habibur Rahman"
+  },
+  "strapi": {
+    "uuid": "8c2e66b9-66a7-495f-9013-cfcedcca9233"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

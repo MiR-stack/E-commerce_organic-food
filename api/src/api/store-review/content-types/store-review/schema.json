@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "store_reviews",
+  "info": {
+    "singularName": "store-review",
+    "pluralName": "store-reviews",
+    "displayName": "store-review",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "show",
+        "hide"
+      ],
+      "required": false,
+      "default": "show"
+    },
+    "review": {
+      "type": "text",
+      "required": true,
+      "minLength": 3
+    },
+    "rating": {
+      "type": "integer",
+      "required": true,
+      "max": 5,
+      "min": 1,
+      "default": 5
+    },
+    "customer_id": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "profile": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile.profile",
+      "inversedBy": "store_review"
+    }
+  }
+}

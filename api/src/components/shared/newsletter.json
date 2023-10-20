@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_newsletters",
+  "info": {
+    "displayName": "newsletter"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "buttonLabel": {
+      "type": "string"
+    }
+  }
+}

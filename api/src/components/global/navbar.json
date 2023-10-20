@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_global_navbars",
+  "info": {
+    "displayName": "navbar",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "links": {
+      "displayName": "menu",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.links"
+    },
+    "brand": {
+      "displayName": "brand",
+      "type": "component",
+      "repeatable": false,
+      "component": "global.brand"
+    },
+    "right_side_icon": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-links"
+    },
+    "loginOptions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.links"
+    },
+    "logoutOptions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.links"
+    }
+  }
+}

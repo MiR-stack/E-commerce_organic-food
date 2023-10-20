@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_home_sections",
+  "info": {
+    "displayName": "section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "sectionFor": {
+      "type": "string",
+      "required": true
+    },
+    "ctaButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.links"
+    },
+    "theme": {
+      "type": "string"
+    }
+  }
+}

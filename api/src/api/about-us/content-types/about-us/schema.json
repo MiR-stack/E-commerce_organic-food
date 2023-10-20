@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_uses",
+  "info": {
+    "singularName": "about-us",
+    "pluralName": "about-uses",
+    "displayName": "about us",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "goals": {
+      "displayName": "goals",
+      "type": "component",
+      "repeatable": true,
+      "component": "about-us.goals"
+    }
+  }
+}

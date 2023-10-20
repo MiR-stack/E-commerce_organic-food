@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "landing_pages",
+  "info": {
+    "singularName": "landing-page",
+    "pluralName": "landing-pages",
+    "displayName": "landing page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroSection": {
+      "displayName": "hero section",
+      "type": "component",
+      "repeatable": true,
+      "component": "home.hero-section"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "home.section",
+        "home.offer",
+        "home.brands"
+      ]
+    },
+    "aboutUs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.about-us"
+    }
+  }
+}

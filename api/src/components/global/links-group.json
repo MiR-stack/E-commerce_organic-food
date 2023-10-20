@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_global_links_groups",
+  "info": {
+    "displayName": "links_group"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.links"
+    }
+  }
+}

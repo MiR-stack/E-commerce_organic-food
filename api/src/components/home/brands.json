@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_brands",
+  "info": {
+    "displayName": "brands",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}

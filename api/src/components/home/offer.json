@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_home_offers",
+  "info": {
+    "displayName": "offer",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "mainText": {
+      "type": "text"
+    },
+    "expireDate": {
+      "type": "datetime"
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.links"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
