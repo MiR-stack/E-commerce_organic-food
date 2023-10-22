@@ -22,7 +22,7 @@ function Footer({
             <Typography variant="body1">{brand.description}</Typography>
           </Grid>
           {footer_links.map((footer_link) => (
-            <Items footer_link={footer_link} />
+            <Items footer_link={footer_link} key={footer_link.id} />
           ))}
         </Grid>
       </Container>

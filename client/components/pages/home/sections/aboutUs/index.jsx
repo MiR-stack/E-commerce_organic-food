@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { getData, getStrapiUrl } from "../../../../../utils";
 
@@ -8,7 +8,7 @@ async function AboutUs() {
   return (
     <Grid container justifyContent={"center"}>
       {data.attributes.goals.map((goal) => (
-        <Grid md={4} sm={6}>
+        <Grid md={4} sm={6} key={goal.id}>
           <Stack
             sx={{
               p: 2,

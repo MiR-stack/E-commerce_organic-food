@@ -23,7 +23,7 @@ async function Home() {
     <div>
       <Hero data={heroSection} />
       {blocks.map((block) => (
-        <BlockManger data={block} />
+        <BlockManger data={block} key={block.id} />
       ))}
     </div>
   );

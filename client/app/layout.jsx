@@ -6,8 +6,6 @@ import Providers from "../store/providers";
 import ThemeRegistry from "../theme/ThemeRegistry";
 import Footer from "../components/global/footer";
 import SnackbarProvider from "../components/utils/snackbarProvider";
-import { Suspense } from "react";
-import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,12 +44,10 @@ export default async function RootLayout({ children }) {
           <ThemeRegistry options={{ key: "mui" }}>
             <SnackbarProvider>
               <CssBaseline />
-              <Suspense fallback={<Loading />}>
-                <Navbar navData={navData} />
-                <Toolbar />
-                {children}
-                <Footer footerData={footerData} />
-              </Suspense>
+              <Navbar navData={navData} />
+              <Toolbar />
+              {children}
+              <Footer footerData={footerData} />
             </SnackbarProvider>
           </ThemeRegistry>
         </Providers>

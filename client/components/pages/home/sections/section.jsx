@@ -36,7 +36,7 @@ function Section({
           </Typography>
         )}
       </Stack>
-      <Box sx={{ py: 4 }}>
+      <Box sx={{ py: 4, maxWidth: "100%" }}>
         <Container maxWidth="lg">
           <span>
             <SectionManager sectionFor={sectionFor} />

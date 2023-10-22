@@ -40,7 +40,7 @@ async function Blog() {
   return (
     <Grid container spacing={3}>
       {blogs.map((blog) => (
-        <Grid md={4} sm={6}>
+        <Grid md={4} sm={6} key={blog.id}>
           <BlogCard {...blog} />
         </Grid>
       ))}

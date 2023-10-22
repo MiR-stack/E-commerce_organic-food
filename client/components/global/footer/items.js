@@ -12,7 +12,7 @@ function Items({ footer_link: { title, links } }) {
       </Typography>
       <List disablePadding>
         {links.map((link) => (
-          <Link href={link.href} passHref legacyBehavior>
+          <Link href={link.href} passHref legacyBehavior key={link.id}>
             <ListItem disablePadding sx={{ cursor: "pointer" }}>
               <ListItemText primary={link.label} />
             </ListItem>

@@ -23,14 +23,12 @@ const defaultProps = {
 
 function CardFooter({ data, config = defaultProps.config }) {
   const { direction, favoriteLg, size, favorite, quickView } = config;
+  const disPatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
 
   if (!data) return;
 
   if (!data.count) data.count = 1;
-
-  const disPatch = useDispatch();
-
-  const { enqueueSnackbar } = useSnackbar();
 
   function handleAddCart() {
     disPatch(addCart(data));

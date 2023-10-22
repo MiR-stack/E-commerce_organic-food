@@ -34,7 +34,7 @@ function TestimonialCard({ avatar, name, review, rating }) {
 
     return color;
   }
-
+  name = name.replace(/\s+/g, " ").trim();
   return (
     <Card
       sx={{

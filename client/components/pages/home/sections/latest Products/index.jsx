@@ -11,10 +11,11 @@ async function LatestProduts() {
         let data = product.attributes;
         data.id = product.id;
         return (
-          <Grid lg={4} hm={6} xs={12}>
+          <Grid lg={4} hm={6} xs={12} key={data.id}>
             <span>
               <ProductCard
                 data={data}
+                yarn
                 config={{
                   favorite: true,
                   favoriteLg: false,
