@@ -119,33 +119,6 @@ export const GetProduct = async (prefix, kind) => {
   }
 };
 
-// const getBlogData = async (type) => {
-//   const queries = {
-//     card: {
-//       populate: {
-//         profile: {
-//           fields: ["firstName", "lastName"],
-//         },
-//         urlToImage: {
-//           fields: ["name", "alternativeText", "formats"],
-//         },
-//       },
-//       fields: ["title", "description"],
-//     },
-//   };
-
-//   const blogUrl = getStrapiUrl(`/blogs?${qs.stringify({ ...queries[type] })}`);
-
-//   const commentUrl = getStrapiUrl(`/comments/api::b log.blog`);
-
-//   try {
-//     const data = await fetch(blogUrl, { cache: "no-store" });
-//     return data.json();
-//   } catch (e) {
-//     throw new Error(e);
-//   }
-// };
-
 export const getFormatedImage = (image) => {
   const {
     formats: { large, small, medium, thumbnail },
