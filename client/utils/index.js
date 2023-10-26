@@ -39,9 +39,18 @@ export const getGlobalData = async () => {
   return (await fetch(url, { next: { tags: ["global"] } })).json();
 };
 
+export const getBanner = async (page) => {
+  const url = getStrapiUrl(`/banners?filters[for][$eq]=${page}&populate=*`);
+  const res = await getData(url, [page]);
+  let { bgImage, name, breadcrumb } = res.data[0].attributes;
+  const { srcs, alt } = getFormatedImage(bgImage);
+
+  return { name, srcs, alt, breadcrumb };
+};
+
 export const getCategories = async (variant) => {
   const variants = {
-    navbar: {
+    short: {
       fields: ["name", "slug"],
     },
     home: {
@@ -51,7 +60,6 @@ export const getCategories = async (variant) => {
   };
 
   const url = getStrapiUrl(`/categories?${qs.stringify(variants[variant])}`);
-
   return await getData(url, ["category"]);
 };
 

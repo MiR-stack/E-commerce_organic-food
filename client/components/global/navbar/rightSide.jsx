@@ -7,7 +7,7 @@ import {
 } from "@mui/icons-material";
 import useMenu from "../../../hooks/useMenu";
 import CustomMenu from "./menus/CustomMenu";
-import useDrawer from "./drawer/useDrawer";
+import useDrawer from "../../shared/drawer/useDrawer";
 import ProductsDrawer from "./drawer/productsDrawer";
 import { useDispatch, useSelector } from "react-redux";
 import { handleCounter } from "../../../utils";

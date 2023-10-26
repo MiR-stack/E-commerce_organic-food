@@ -17,7 +17,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const globalData = await getGlobalData();
   const { navbar, footer, footer_links } = globalData.data.attributes;
-  const categories = await getCategories("navbar");
+  const categories = await getCategories("short");
   const navData = { navbar, categories };
   const footerData = { footer, footer_links };
 

@@ -51,7 +51,7 @@ function Login() {
 
       <Divider>or</Divider>
       <FormHelperText sx={{ color: "red" }}>
-        {result.error?.data.error.message}{" "}
+        {result.error?.data?.error.message}{" "}
       </FormHelperText>
       <FormCreator data={data} validate={validate} submit={handleSubmit}>
         <FormControlLabel

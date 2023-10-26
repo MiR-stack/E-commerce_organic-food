@@ -20,7 +20,7 @@ async function LatestProduts() {
                   favorite: true,
                   favoriteLg: false,
                   size: "small",
-                  direction: "row",
+                  direction: "flex",
                   mediaHeight: "120",
                   mediaWidth: "35%",
                 }}

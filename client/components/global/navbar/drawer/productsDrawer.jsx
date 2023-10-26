@@ -6,7 +6,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import DrawerLayout from "./drawerLayout";
+import DrawerLayout from "../../../shared/drawer/drawerLayout";
 import { Close } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
@@ -93,7 +93,7 @@ function ProductsDrawer({
                         src={product.thumbnail}
                         alt="sd"
                         height={80}
-                        width={80}
+                        width={100}
                       />
                       <Stack alignItems={"center"} gap={0.5}>
                         <Typography variant="subtitle1">

@@ -18,7 +18,9 @@ function ProductCard({ data, config }) {
   data.thumbnail = thumbnail;
 
   return (
-    <Card sx={{ display: "flex", height: "100%", alignItems: "center" }}>
+    <Card
+      sx={{ display: config.direction, height: "100%", alignItems: "center" }}
+    >
       <Link href={`/products/${data.slug}`} passHref legacyBehavior>
         <CardMedia
           component={"img"}

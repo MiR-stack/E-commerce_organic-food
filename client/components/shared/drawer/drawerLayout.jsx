@@ -13,7 +13,7 @@ function DrawerLayout({ window, open, handleDrawerToggle, children, config }) {
         open={open}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
         }}
         {...config}
       >

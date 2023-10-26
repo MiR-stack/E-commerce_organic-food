@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_breadcrumbs",
+  "info": {
+    "displayName": "breadcrumb",
+    "icon": "arrowRight"
+  },
+  "options": {},
+  "attributes": {
+    "href": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

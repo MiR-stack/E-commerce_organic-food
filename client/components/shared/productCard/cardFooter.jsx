@@ -18,11 +18,12 @@ const defaultProps = {
     favoriteLg: true,
     favorite: true,
     quickView: false,
+    shortTxt: false,
   },
 };
 
 function CardFooter({ data, config = defaultProps.config }) {
-  const { direction, favoriteLg, size, favorite, quickView } = config;
+  const { favoriteLg, size, favorite, quickView } = config;
   const disPatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -45,7 +46,7 @@ function CardFooter({ data, config = defaultProps.config }) {
     <CardActions sx={{ py: 1, px: 0 }}>
       <Stack direction="row">
         <Stack
-          direction={direction}
+          direction={"row"}
           sx={{
             border: "1px solid #016a70",
             borderRadius: "5px",
@@ -58,7 +59,7 @@ function CardFooter({ data, config = defaultProps.config }) {
               sx={{ border: "none" }}
               size={size}
             >
-              add to favorite
+              add favorite
             </Button>
           )}
           {quickView && <Button sx={{ border: "none" }}>quick view</Button>}
@@ -69,7 +70,7 @@ function CardFooter({ data, config = defaultProps.config }) {
             sx={{ borderRadius: "0" }}
             size={size}
           >
-            add to cart
+            {config.shortTxt ? "" : "add to"} cart
           </Button>
         </Stack>
         {favorite && !favoriteLg && (

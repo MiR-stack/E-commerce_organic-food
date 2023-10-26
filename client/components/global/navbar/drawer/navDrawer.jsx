@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import { Box, Typography } from "@mui/material";
 import NestedList from "./nestedList";
 import CustomeLink from "../../../shared/customeLink";
-import DrawerLayout from "./drawerLayout";
+import DrawerLayout from "../../../shared/drawer/drawerLayout";
 
 import React from "react";
 

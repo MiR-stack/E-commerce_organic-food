@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Menus from "./menus/menus";
-import SearchBar from "./searchBar";
+import SearchBar from "../../shared/searchBar";
 import RightSideIcons from "./rightSide";
 import Link from "next/link";
 import { Link as MuiLink } from "@mui/material";
