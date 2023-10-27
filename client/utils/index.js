@@ -41,7 +41,7 @@ export const getGlobalData = async () => {
 
 export const getBanner = async (page) => {
   const url = getStrapiUrl(`/banners?filters[for][$eq]=${page}&populate=*`);
-  const res = await getData(url, [page]);
+  const res = await getData(url, ["banner"]);
   let { bgImage, name, breadcrumb } = res.data[0].attributes;
   const { srcs, alt } = getFormatedImage(bgImage);
 

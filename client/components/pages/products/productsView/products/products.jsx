@@ -24,7 +24,7 @@ function Products({ layout }) {
         <Loading layout={layout} />
       ) : (
         <Grid2 container spacing={{ xs: 2, sm: 3 }}>
-          {productsData.map((product) => (
+          {productsData?.map((product) => (
             <Grid2 {...GridProps} key={product.id}>
               <ProductCard data={product} config={productCardConfig} />
             </Grid2>
