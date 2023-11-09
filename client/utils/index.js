@@ -73,6 +73,12 @@ export function getStrapiMedia(url) {
   return `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337"}${url}`;
 }
 
+/**
+ *
+ * @param {String} prefix  prefix can be singular or plural like product or products
+ * @param {String} kind there is many predefined kind feautured,latest and defaults
+ * @return {Promise}
+ */
 export const GetProduct = async (prefix, kind) => {
   const queries = {
     default: {
@@ -144,9 +150,9 @@ export const getFormatedImage = (image) => {
   return { srcs, alt: alternativeText };
 };
 
-export const handleCounter = (items) => {
+export const handleQuantity = (items) => {
   return items.reduce((acc, cur) => {
-    acc += cur.count;
+    acc += cur.quantity;
     return acc;
   }, 0);
 };

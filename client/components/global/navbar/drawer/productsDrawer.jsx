@@ -25,7 +25,7 @@ function ProductsDrawer({
   open,
   handleDrawerToggle,
   products,
-  count,
+  quantity,
   type,
   title,
 }) {
@@ -58,7 +58,7 @@ function ProductsDrawer({
   };
 
   const subtotal = products.reduce((acc, cur) => {
-    acc += cur.salePrice * cur.count;
+    acc += cur.salePrice * cur.quantity;
     return acc;
   }, 0);
 
@@ -71,7 +71,7 @@ function ProductsDrawer({
             <Close />
           </IconButton>
         </Stack>
-        {count > 0 ? (
+        {quantity > 0 ? (
           <Box>
             <Stack gap={2} sx={{ px: { xs: 1, sm: 2, md: 3 }, pt: 3 }}>
               {products.map((product) => (
@@ -99,25 +99,21 @@ function ProductsDrawer({
                         <Typography variant="subtitle1">
                           {product.name}{" "}
                         </Typography>
-                        {product.salePrice !== product.price ? (
-                          <Stack
-                            direction={"row"}
-                            gap={1}
-                            alignItems={"center"}
-                          >
-                            <Typography variant="subtitle1">
-                              ${product.salePrice}
-                            </Typography>
+                        <Stack direction={"row"} gap={1} alignItems={"center"}>
+                          <Typography variant="h6">
+                            ${product.salePrice}
+                          </Typography>
+                          {product.salePrice !== product.price ? (
                             <Typography
                               sx={{ textDecoration: "line-through" }}
                               variant="subtitle2"
                             >
                               ${product.price}
                             </Typography>
-                          </Stack>
-                        ) : (
-                          <Typography variant="h6">${product.price}</Typography>
-                        )}
+                          ) : (
+                            ""
+                          )}
+                        </Stack>
 
                         {type === "cart" && (
                           <Stack direction="row" alignItems={"center"}>
@@ -131,7 +127,7 @@ function ProductsDrawer({
                               -
                             </Button>
                             <Typography sx={{ px: 2 }}>
-                              {product.count}
+                              {product.quantity}
                             </Typography>
                             <Button
                               variant="outlined"

@@ -12,37 +12,21 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "variation_id": {
-      "type": "uid",
-      "default": "VR_",
-      "required": true,
-      "minLength": 4
-    },
-    "product_id": {
-      "type": "uid",
-      "default": "PR_",
-      "required": true,
-      "minLength": 4
-    },
-    "short_description": {
+    "shortDescription": {
       "type": "text",
-      "required": true,
+      "required": false,
       "minLength": 20,
       "maxLength": 100
     },
     "description": {
       "type": "richtext",
-      "required": true,
+      "required": false,
       "minLength": 50
     },
     "permalink": {
       "type": "string",
       "required": true,
       "unique": true
-    },
-    "sku": {
-      "type": "string",
-      "required": true
     },
     "price": {
       "type": "biginteger",
@@ -60,11 +44,6 @@
       "type": "integer",
       "required": true
     },
-    "weight": {
-      "type": "component",
-      "repeatable": true,
-      "component": "product.weight"
-    },
     "tags": {
       "type": "component",
       "repeatable": true,
@@ -75,6 +54,23 @@
       "relation": "manyToOne",
       "target": "api::product.product",
       "inversedBy": "variations"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "variationName": {
+      "type": "string",
+      "required": true
     }
   }
 }

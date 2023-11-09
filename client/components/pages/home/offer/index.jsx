@@ -1,8 +1,6 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import Timer from "./timer";
 import { getFormatedImage, getStrapiMedia } from "../../../../utils";
-import Image from "next/image";
-import TransparentBg from "../../../utils/transparenBg";
 import Link from "next/link";
 
 function Offer({

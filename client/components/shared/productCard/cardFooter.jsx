@@ -1,15 +1,23 @@
 "use client";
 
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { CardActions, Button, Fab, Stack, IconButton } from "@mui/material";
-import { useDispatch } from "react-redux";
+import {
+  CardActions,
+  Button,
+  Fab,
+  Stack,
+  IconButton,
+  Checkbox,
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addFavorite,
   addCart,
-  isExist,
+  removeFavorite,
 } from "../../../store/slices/productSlice";
 import { useSnackbar } from "notistack";
-import { FavoriteBorder } from "@mui/icons-material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { useEffect, useState } from "react";
 
 const defaultProps = {
   config: {
@@ -22,14 +30,15 @@ const defaultProps = {
   },
 };
 
-function CardFooter({ data, config = defaultProps.config }) {
+function CardFooter({ data, config }) {
+  config = { ...defaultProps.config, ...config };
   const { favoriteLg, size, favorite, quickView } = config;
   const disPatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
   if (!data) return;
 
-  if (!data.count) data.count = 1;
+  if (!data.quantity) data.quantity = 1;
 
   function handleAddCart() {
     disPatch(addCart(data));
@@ -41,6 +50,23 @@ function CardFooter({ data, config = defaultProps.config }) {
     disPatch(addFavorite(data));
     enqueueSnackbar("product added to favorite", { variant: "success" });
   }
+  function handleRemoveFavorite() {
+    disPatch(removeFavorite(data.id));
+    enqueueSnackbar("product removed from favorite", { variant: "warning" });
+  }
+
+  const products = useSelector((state) => state.products.favorites);
+
+  const [exist, setExist] = useState(false);
+
+  useEffect(() => {
+    const isExist = products.find((product) => product.id === data.id);
+    setExist(Boolean(isExist));
+  }, [products]);
+  const handleFavorite = (e) => {
+    exist ? handleRemoveFavorite() : handleAddFavorite();
+    setExist(e.target.checked);
+  };
 
   return (
     <CardActions sx={{ py: 1, px: 0 }}>
@@ -74,13 +100,12 @@ function CardFooter({ data, config = defaultProps.config }) {
           </Button>
         </Stack>
         {favorite && !favoriteLg && (
-          <IconButton
-            aria-label="favourite"
-            onClick={handleAddFavorite}
-            size={size}
-          >
-            <FavoriteBorder />
-          </IconButton>
+          <Checkbox
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite />}
+            checked={exist}
+            onChange={handleFavorite}
+          />
         )}
       </Stack>
     </CardActions>

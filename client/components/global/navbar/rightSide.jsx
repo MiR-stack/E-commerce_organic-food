@@ -10,7 +10,7 @@ import CustomMenu from "./menus/CustomMenu";
 import useDrawer from "../../shared/drawer/useDrawer";
 import ProductsDrawer from "./drawer/productsDrawer";
 import { useDispatch, useSelector } from "react-redux";
-import { handleCounter } from "../../../utils";
+import { handleQuantity } from "../../../utils";
 import { handleOpen, handleUser } from "../../../store/slices/authSlice";
 import AuthModal from "../authentication";
 import { useFindMeQuery } from "../../../store/apis/authentication";
@@ -29,8 +29,8 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
   const { carts: cartItems, favorites: favouriteItmes } = useSelector(
     (state) => state.products
   );
-  const cartItemsCount = handleCounter(cartItems);
-  const favouriteItemsCount = handleCounter(favouriteItmes);
+  const cartQuantity = handleQuantity(cartItems);
+  const favouriteQuantity = handleQuantity(favouriteItmes);
 
   const { modal, component, isLoggedIn, token } = useSelector(
     (state) => state.authentication
@@ -81,7 +81,7 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
         color="inherit"
         onClick={handleFavouriteDrawerToggle}
       >
-        <Badge badgeContent={favouriteItemsCount} max={99} color="error">
+        <Badge badgeContent={favouriteQuantity} max={99} color="error">
           <FavoriteBorderOutlined
             sx={{ fontSize: { xs: 20, sm: 25, lg: 30 } }}
           />
@@ -93,7 +93,7 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
         color="inherit"
         onClick={handleCartDrawerToggle}
       >
-        <Badge badgeContent={cartItemsCount} max={99} color="error">
+        <Badge badgeContent={cartQuantity} max={99} color="error">
           <ShoppingCartOutlined sx={{ fontSize: { xs: 20, sm: 25, lg: 30 } }} />
         </Badge>
       </IconButton>
@@ -120,7 +120,7 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
         title={"Cart Items"}
         open={cartOpen}
         products={cartItems}
-        count={cartItemsCount}
+        quantity={cartQuantity}
         handleDrawerToggle={handleCartDrawerToggle}
         type={"cart"}
       />
@@ -128,7 +128,7 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
         title={"Favourite Items"}
         open={favouriteOpen}
         products={favouriteItmes}
-        count={favouriteItemsCount}
+        quantity={favouriteQuantity}
         handleDrawerToggle={handleFavouriteDrawerToggle}
         type={"favourite"}
       />

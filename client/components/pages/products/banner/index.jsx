@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import CustomBreadcrumbs from "../../../shared/Breadcrumbs";
 import { getBanner } from "../../../../utils";
 import Image from "next/image";
-import Backdrop from "../../../utils/backdrop";
+import { Backdrop } from "../../../utils";
 
 async function Banner({ children, name }) {
   const {

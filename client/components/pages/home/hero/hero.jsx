@@ -9,7 +9,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { Box, Typography, Button, Stack } from "@mui/material";
 import Image from "next/image";
 import { getStrapiMedia } from "../../../../utils";
-import TransparentBg from "../../../utils/transparenBg";
+import { Backdrop } from "../../../utils";
 import styled from "@emotion/styled";
 import Link from "next/link";
 
@@ -29,7 +29,7 @@ const Offer = ({
   return (
     <>
       <Image src={src} alt={alternativeText} fill priority />
-      <TransparentBg />
+      <Backdrop />
       <Content
         sx={{
           width: { sm: "500px", md: "600px", lg: "900px" },

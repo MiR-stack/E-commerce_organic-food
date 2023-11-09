@@ -8,7 +8,7 @@
   "attributes": {
     "color": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "size": {
       "type": "enumeration",
@@ -18,7 +18,7 @@
         "large"
       ],
       "default": "medium",
-      "required": true
+      "required": false
     }
   }
 }

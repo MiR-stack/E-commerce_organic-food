@@ -29,7 +29,7 @@ export const productSlice = createSlice({
         (product) => product.id === action.payload.id
       );
       if (product) {
-        product.count++;
+        product.quantity++;
       } else {
         state.carts.push(action.payload);
       }
@@ -39,15 +39,15 @@ export const productSlice = createSlice({
         (product) => product.id === action.payload
       );
 
-      product.count++;
+      product.quantity++;
     },
     dicreaseItem: (state, action) => {
       let product = state.carts.find(
         (product) => product.id === action.payload
       );
 
-      if (product.count > 1) {
-        product.count--;
+      if (product.quantity > 1) {
+        product.quantity--;
       }
     },
     removeCart: (state, action) => {
