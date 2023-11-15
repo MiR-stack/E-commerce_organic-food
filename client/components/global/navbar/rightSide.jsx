@@ -11,7 +11,11 @@ import useDrawer from "../../shared/drawer/useDrawer";
 import ProductsDrawer from "./drawer/productsDrawer";
 import { useDispatch, useSelector } from "react-redux";
 import { handleQuantity } from "../../../utils";
-import { handleOpen, handleUser } from "../../../store/slices/authSlice";
+import {
+  handleOpen,
+  handleUser,
+  handleToken,
+} from "../../../store/slices/authSlice";
 import AuthModal from "../authentication";
 import { useFindMeQuery } from "../../../store/apis/authentication";
 import { useEffect } from "react";
@@ -46,8 +50,8 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
   });
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
     dispatch(handleUser({ isLoggedIn: false, user: null }));
+    dispatch(handleToken(""));
   };
   loginOptions.forEach((option) => {
     if (option.label === "logout") {
