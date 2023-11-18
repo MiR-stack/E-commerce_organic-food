@@ -5,6 +5,7 @@ import qs from "qs";
 import variationsAdapter from "../../../adapters/variations";
 import Details from "../../../components/pages/ProductDetails/details";
 import CustomBreadcrumbs from "../../../components/shared/Breadcrumbs";
+import RelatedProucts from "../../../components/pages/ProductDetails/relatedProducts";
 
 // TODO: we will work with variations
 async function ProductDetails({ params }) {
@@ -22,6 +23,19 @@ async function ProductDetails({ params }) {
       tags: {
         populate: "*",
       },
+      related_products: {
+        populate: ["images"],
+        fields: [
+          "name",
+          "slug",
+          "price",
+          "discount",
+          "salePrice",
+          "ratingCount",
+          "avarageRating",
+        ],
+      },
+      category: true,
     },
     // [
     //   "images",
@@ -43,6 +57,7 @@ async function ProductDetails({ params }) {
     id,
     attributes: {
       name,
+      slug,
       images,
       avarageRating,
       stockStatus,
@@ -52,6 +67,8 @@ async function ProductDetails({ params }) {
       shortDescription,
       description,
       tags,
+      related_products,
+      category,
       // variations,
     },
   } = products.data[0];
@@ -107,6 +124,13 @@ async function ProductDetails({ params }) {
       />
       <ShortView data={quickViewData} />
       <Details id={id} details={description} />
+      <span>
+        <RelatedProucts
+          relatedProducts={related_products.data}
+          slug={slug}
+          category={category.data.attributes.slug}
+        />
+      </span>
     </Container>
   );
 }
