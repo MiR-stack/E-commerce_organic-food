@@ -11,9 +11,8 @@ const buttonsConfig = {
 };
 
 function CSR({ data }) {
-  const { thumbnail, price, salePrice, id } = data;
+  const { price, salePrice, id } = data;
   const [quantity, setQuantity] = useState(1);
-  console.log("csr", thumbnail);
   const IncreaseQuantity = () => {
     setQuantity(quantity + 1);
   };
