@@ -41,7 +41,7 @@ const actions = async (result, kind) => {
   strapi.entityService.update("api::product.product", id, {
     data: {
       ratingCount,
-      avarageRating,
+      avarageRating: avarageRating.toFixed(1),
     },
   });
 };

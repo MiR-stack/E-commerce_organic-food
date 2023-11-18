@@ -1,10 +1,8 @@
 module.exports = () => {
   return async (ctx, next) => {
-    const id = ctx.state.user.id;
+    const profileId = ctx.state.user?.profileId;
 
-    ctx.request.body.data.customer_id = String(id);
-    ctx.request.body.data.customer = id;
-
+    if (profileId) ctx.request.body.data.customer_id = String(profileId);
     await next();
   };
 };
