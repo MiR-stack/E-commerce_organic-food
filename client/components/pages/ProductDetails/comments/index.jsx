@@ -45,83 +45,97 @@ const Comment = ({
   };
 
   return (
-    <Stack direction={"row"} spacing={2}>
-      <CustomAvater
-        name={name}
-        styles={reply ? styles.reply : styles.comment}
-      />
-      <Stack spacing={2} sx={{ width: reply ? "80%" : "100%" }}>
-        <Stack
-          sx={{
-            p: 2,
-            bgcolor: "background.offWhite",
-            borderRadius: 3,
-          }}
-        >
-          <Typography variant="h6">{name} </Typography>
-          <Stack>
-            <Typography variant={reply ? "body2" : "body1"}>
-              {content}{" "}
-            </Typography>
-            <Stack
-              direction={"row"}
-              justifyContent={"flex-end"}
-              alignItems={"center"}
-            >
-              {!repliesIsOpen && !reply && replies.length > 0 && (
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    cursor: "pointer",
-                    color: "text.secondary",
-                    ":hover": {
-                      textDecoration: "underline",
-                      color: "text.primary",
-                    },
-                  }}
-                  onClick={handleReplies}
-                >
-                  View Replies ({replies.length})
-                </Typography>
-              )}
-              <Button size={reply ? "small" : "large"} onClick={handleReplybar}>
-                reply
-              </Button>
-              {authorId === user?.id ? (
+    <Stack gap={2}>
+      <Stack
+        direction={"row"}
+        spacing={{ sm: 2 }}
+        sx={{
+          bgcolor: { xs: "background.offWhite", sm: "transparent" },
+          p: { xs: 1, sm: 0 },
+          borderRadius: 2,
+        }}
+      >
+        <CustomAvater
+          name={name}
+          styles={reply ? styles.reply : styles.comment}
+        />
+        <Stack spacing={{ sm: 2 }} sx={{ width: "100%" }}>
+          <Stack
+            sx={{
+              p: { sm: 2, xs: 1 },
+              bgcolor: { sm: "background.offWhite" },
+              borderRadius: 3,
+            }}
+          >
+            <Typography variant="h6">{name} </Typography>
+            <Stack>
+              <Typography variant={reply ? "body2" : "body1"}>
+                {content}{" "}
+              </Typography>
+              <Stack
+                direction={"row"}
+                justifyContent={"flex-end"}
+                alignItems={"center"}
+              >
+                {!repliesIsOpen && !reply && replies.length > 0 && (
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      cursor: "pointer",
+                      color: "text.secondary",
+                      ":hover": {
+                        textDecoration: "underline",
+                        color: "text.primary",
+                      },
+                    }}
+                    onClick={handleReplies}
+                  >
+                    View Replies ({replies.length})
+                  </Typography>
+                )}
                 <Button
                   size={reply ? "small" : "large"}
-                  color="warning"
-                  onClick={handleDelete}
+                  onClick={handleReplybar}
                 >
-                  Delete
+                  reply
                 </Button>
-              ) : (
-                ""
-              )}
+                {authorId === user?.id ? (
+                  <Button
+                    size={reply ? "small" : "large"}
+                    color="warning"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </Button>
+                ) : (
+                  ""
+                )}
+              </Stack>
             </Stack>
           </Stack>
         </Stack>
-        {repliesIsOpen ? (
-          <Stack spacing={2}>
-            {replies.map((reply) => (
-              <Comment
-                key={reply.id}
-                commentId={reply.id}
-                authorId={reply.author.id}
-                id={id}
-                productId={productId}
-                name={reply.author.name}
-                content={reply.content}
-                replies={reply.children}
-                reply
-              />
-            ))}
-          </Stack>
-        ) : (
-          ""
-        )}
-        <CommentBar id={productId} isOpen={replybar} reply threadOf={id} />
       </Stack>
+      {repliesIsOpen ? (
+        <Stack spacing={2} sx={{ ml: { sm: 8, xs: 3 } }}>
+          {replies.map((reply) => (
+            <Comment
+              key={reply.id}
+              commentId={reply.id}
+              authorId={reply.author.id}
+              id={id}
+              productId={productId}
+              name={reply.author.name}
+              content={reply.content}
+              replies={reply.children}
+              reply
+            />
+          ))}
+        </Stack>
+      ) : (
+        ""
+      )}
+
+      <CommentBar id={productId} isOpen={replybar} reply threadOf={id} />
     </Stack>
   );
 };
