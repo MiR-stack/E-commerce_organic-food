@@ -52,7 +52,7 @@ async function ProductDetails({ params }) {
   });
 
   const url = getStrapiUrl(`/products?${productQuery}`);
-  const products = await getData(url, ["product"]);
+  const products = await getData(url, [params.slug]);
   const {
     id,
     attributes: {
