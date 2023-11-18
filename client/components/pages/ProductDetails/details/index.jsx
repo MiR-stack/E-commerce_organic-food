@@ -102,6 +102,7 @@ export default function Details({ id, details }) {
           handleReviewsLimit={handleReviewsLimit}
           total={reviews?.meta.pagination.total}
           limit={reviewsLimit}
+          refetch={reviewsRefetch}
         />
       </CustomTabPanel>
     </Box>

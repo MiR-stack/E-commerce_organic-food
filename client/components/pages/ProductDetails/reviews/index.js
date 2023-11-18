@@ -7,8 +7,9 @@ import useModal from "../../../shared/modal/useModal";
 import { useCreateReviewMutation } from "../../../../store/apis/review";
 import { useDispatch, useSelector } from "react-redux";
 import { handleOpen as handleOpenAuth } from "../../../../store/slices/authSlice";
+import { useEffect } from "react";
 
-function Reviews({ id, reviews, handleReviewsLimit, total, limit }) {
+function Reviews({ id, reviews, handleReviewsLimit, total, limit, refetch }) {
   const { open, handleClose, handleOpen } = useModal();
 
   const { isLoggedIn, token, user } = useSelector(
@@ -37,6 +38,10 @@ function Reviews({ id, reviews, handleReviewsLimit, total, limit }) {
       acc += cur.attributes.rating;
       return acc;
     }, 0) / reviews.length;
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <Box>
