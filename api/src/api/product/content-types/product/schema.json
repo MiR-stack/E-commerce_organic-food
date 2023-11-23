@@ -65,11 +65,7 @@
     },
     "stockStatus": {
       "type": "enumeration",
-      "enum": [
-        "available",
-        "stock out",
-        "coming soon"
-      ],
+      "enum": ["available", "stock out", "coming soon"],
       "default": "available"
     },
     "reviewsAllowed": {
@@ -87,10 +83,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "videos"
-      ]
+      "allowedTypes": ["images", "videos"]
     },
     "category": {
       "type": "relation",

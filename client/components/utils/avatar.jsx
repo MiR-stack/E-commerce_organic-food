@@ -1,7 +1,9 @@
 import { Avatar } from "@mui/material";
 import { getStrapiMedia } from "../../utils";
 
-function CustomAvater({ avatar, name, styles }) {
+function CustomAvater({ avatar, name, styles, config }) {
+  if (!avatar && !name) return <Avatar sx={styles} />;
+
   const avatarMedia = getStrapiMedia(
     avatar?.data?.attributes.formats.thumbnail.url
   );
@@ -39,7 +41,9 @@ function CustomAvater({ avatar, name, styles }) {
         ...styles,
       }}
     >
-      {`${name.split(" ")[0][0]}${name.split(" ")[1][0]}`}
+      {`${name.split(" ")[0][0]}${
+        config?.name === "sm" ? "" : name.split(" ")[1][0]
+      }`}
     </Avatar>
   );
 }

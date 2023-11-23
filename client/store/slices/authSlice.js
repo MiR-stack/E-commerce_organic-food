@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const initialState = {
   modal: false,
   component: "login",
-  isLoggedIn: false,
-  user: null,
+  route: "/",
+  error: "",
   token: "",
 };
 
@@ -18,16 +18,19 @@ const authSlice = createSlice({
     },
     handleClose: (state) => {
       state.modal = false;
+      state.error = "";
+    },
+    handleError: (state, action) => {
+      state.error = action.payload;
     },
     handleComponent: (state, action) => {
       state.component = action.payload;
     },
-    handleUser: (state, action) => {
-      state.isLoggedIn = action.payload.isLoggedIn;
-      state.user = action.payload.user;
-    },
     handleToken: (state, action) => {
       state.token = action.payload;
+    },
+    handleRoute: (state, action) => {
+      state.route = action.payload;
     },
   },
 });
@@ -36,8 +39,10 @@ export const {
   handleOpen,
   handleClose,
   handleComponent,
-  handleUser,
+  handleError,
+  handleRoute,
   handleToken,
+  handleIsLoggedIn,
 } = authSlice.actions;
 
 export default authSlice.reducer;

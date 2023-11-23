@@ -14,10 +14,7 @@
   "attributes": {
     "status": {
       "type": "enumeration",
-      "enum": [
-        "show",
-        "hide"
-      ],
+      "enum": ["show", "hide"],
       "required": false,
       "default": "show"
     },

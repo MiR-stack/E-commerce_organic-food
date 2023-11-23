@@ -1,25 +1,20 @@
 import {
-  Stack,
   Button,
-  Divider,
   FormControlLabel,
   Checkbox,
   Typography,
   Box,
   FormHelperText,
+  Stack,
 } from "@mui/material";
 import FormCreator from "../../../shared/formCreator";
 import { data } from "./data";
 import { validate } from "./validation";
 import { useEffect, useState } from "react";
-import { Google } from "@mui/icons-material";
-import {
-  handleComponent,
-  handleToken,
-} from "../../../../store/slices/authSlice";
-import { useDispatch } from "react-redux";
+import { handleComponent } from "../../../../store/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../../../../store/apis/authentication";
-import { handleClose } from "../../../../store/slices/authSlice";
+import { handleClose, handleToken } from "../../../../store/slices/authSlice";
 
 function Login() {
   const dispatch = useDispatch();
@@ -35,24 +30,21 @@ function Login() {
   useEffect(() => {
     if (result.status === "fulfilled") {
       if (remember) {
-        localStorage.setItem("token", JSON.stringify(result.data.jwt));
+        dispatch(handleToken(result.data.jwt));
       }
-      dispatch(handleToken(result.data.jwt));
       dispatch(handleClose());
     }
   }, [result.status]);
 
-  return (
-    <Stack alignItems={"center"} gap={1}>
-      <Button variant="outlined" startIcon={<Google />}>
-        {" "}
-        sign in with google
-      </Button>
+  const { error } = useSelector((state) => state.authentication);
 
-      <Divider>or</Divider>
-      <FormHelperText sx={{ color: "red" }}>
-        {result.error?.data?.error.message}{" "}
-      </FormHelperText>
+  return (
+    <Box>
+      <Stack alignItems={"center"}>
+        <FormHelperText sx={{ color: "red" }}>
+          {result.error?.data?.error.message || error}
+        </FormHelperText>
+      </Stack>
       <FormCreator data={data} validate={validate} submit={handleSubmit}>
         <FormControlLabel
           control={<Checkbox checked={remember} onChange={handleRemember} />}
@@ -73,7 +65,7 @@ function Login() {
           register
         </Box>
       </Typography>
-    </Stack>
+    </Box>
   );
 }
 

@@ -5,24 +5,13 @@ import {
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
-import useMenu from "../../../hooks/useMenu";
-import CustomMenu from "./menus/CustomMenu";
 import useDrawer from "../../shared/drawer/useDrawer";
 import ProductsDrawer from "./drawer/productsDrawer";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { handleQuantity } from "../../../utils";
-import {
-  handleOpen,
-  handleUser,
-  handleToken,
-} from "../../../store/slices/authSlice";
-import AuthModal from "../authentication";
-import { useFindMeQuery } from "../../../store/apis/authentication";
-import { useEffect } from "react";
+import User from "../authentication";
 
 function RightSideIcons({ loginOptions, logoutOptions }) {
-  const dispatch = useDispatch();
-  const { open, anchorEl, handleClick, handleClose } = useMenu();
   const { open: cartOpen, handleDrawerToggle: handleCartDrawerToggle } =
     useDrawer();
   const {
@@ -35,41 +24,6 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
   );
   const cartQuantity = handleQuantity(cartItems);
   const favouriteQuantity = handleQuantity(favouriteItmes);
-
-  const { modal, component, isLoggedIn, token } = useSelector(
-    (state) => state.authentication
-  );
-  logoutOptions.forEach((option) => {
-    if (option.label === "log in") {
-      option.onClick = handleOpen("login");
-      option.dispatchable = true;
-    } else if (option.label === "register") {
-      option.onClick = handleOpen("register");
-      option.dispatchable = true;
-    }
-  });
-
-  const handleLogout = () => {
-    dispatch(handleUser({ isLoggedIn: false, user: null }));
-    dispatch(handleToken(""));
-  };
-  loginOptions.forEach((option) => {
-    if (option.label === "logout") {
-      option.onClick = handleLogout;
-    }
-  });
-
-  const { data } = useFindMeQuery(token);
-  useEffect(() => {
-    if (data) {
-      dispatch(
-        handleUser({
-          isLoggedIn: true,
-          user: data,
-        })
-      );
-    }
-  }, [data]);
 
   return (
     <Box
@@ -102,24 +56,8 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
         </Badge>
       </IconButton>
 
-      <IconButton
-        size="large"
-        edge="end"
-        aria-label="account of current user"
-        aria-haspopup="true"
-        color="inherit"
-        sx={{ display: { xs: "none", sm: "inline-block" } }}
-        onClick={handleClick}
-      >
-        <Avatar sx={{ height: 40, width: 40 }} />
-      </IconButton>
+      <User loginOptions={loginOptions} logoutOptions={logoutOptions} />
 
-      <CustomMenu
-        open={open}
-        anchorEl={anchorEl}
-        handleClose={handleClose}
-        links={isLoggedIn ? loginOptions : logoutOptions}
-      />
       <ProductsDrawer
         title={"Cart Items"}
         open={cartOpen}
@@ -136,7 +74,6 @@ function RightSideIcons({ loginOptions, logoutOptions }) {
         handleDrawerToggle={handleFavouriteDrawerToggle}
         type={"favourite"}
       />
-      <AuthModal modal={modal} component={component} />
     </Box>
   );
 }

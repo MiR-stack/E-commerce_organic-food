@@ -3,13 +3,11 @@ import {
   Button,
   Box,
   Typography,
-  Stack,
   Checkbox,
   FormControlLabel,
-  Divider,
   FormHelperText,
+  Stack,
 } from "@mui/material";
-import { Google, Token } from "@mui/icons-material";
 import { data } from "./data";
 import { validate } from "./validation";
 import { useDispatch } from "react-redux";
@@ -20,11 +18,7 @@ import {
   handleComponent,
   handleToken,
 } from "../../../../store/slices/authSlice";
-import {
-  useCreateProfileMutation,
-  useDeleteUserMutation,
-  useRegisterMutation,
-} from "../../../../store/apis/authentication";
+import { useRegisterMutation } from "../../../../store/apis/authentication";
 
 function Register() {
   const dispatch = useDispatch();
@@ -34,53 +28,33 @@ function Register() {
     setRemember(!remember);
   };
 
-  const [formData, setFormData] = useState();
-  const [register, { status, isLoading, isSuccess, data: userData, error }] =
+  const [register, { isSuccess, data: userData, error }] =
     useRegisterMutation();
   const handleSubmit = (values) => {
-    const { firstName, lastName, email, password } = values;
-    setFormData(values);
-    register({ name: `${firstName} ${lastName}`, email, password });
+    const { email, password, firstName, lastName } = values;
+    register({
+      userName: email.split("@")[0],
+      email,
+      password,
+      firstName,
+      lastName,
+    });
   };
 
-  const [createProfile, profileData] = useCreateProfileMutation();
-  const [deleteUser, { data: deletedUser }] = useDeleteUserMutation();
   useEffect(() => {
     if (isSuccess) {
-      createProfile({
-        id: userData.user.id,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        token: userData.jwt,
-      });
-    }
-  }, [isSuccess]);
-
-  useEffect(() => {
-    if (profileData.status === "rejected") {
-      deleteUser({ id: userData.user.id, token: userData.jwt });
-    }
-
-    if (profileData.status === "fulfilled") {
-      if (remember) {
-        localStorage.setItem("token", JSON.stringify(userData.jwt));
-      }
       dispatch(handleToken(userData.jwt));
       dispatch(handleClose());
     }
-  }, [profileData.status]);
+  }, [isSuccess]);
 
   return (
-    <Stack alignItems={"center"} justifyContent={"center"} gap={1}>
-      <Button variant="outlined" startIcon={<Google />}>
-        {" "}
-        sign up with google
-      </Button>
-
-      <Divider>or</Divider>
-      <FormHelperText sx={{ color: "red" }}>
-        {error?.data.error.message}{" "}
-      </FormHelperText>
+    <Box>
+      <Stack alignItems={"center"}>
+        <FormHelperText sx={{ color: "red" }}>
+          {error?.data.error.message}
+        </FormHelperText>
+      </Stack>
       <FormCreator data={data} validate={validate} submit={handleSubmit}>
         <FormControlLabel
           control={<Checkbox checked={remember} onChange={handleRemember} />}
@@ -100,7 +74,7 @@ function Register() {
             style={{ color: "text.primary", fontWeight: 800 }}
           />{" "}
         </Typography>
-        <Button sx={{ width: "100%" }} type="submit" variant="contained">
+        <Button sx={{ width: "100%", my: 2 }} type="submit" variant="contained">
           sign up
         </Button>
       </FormCreator>
@@ -115,7 +89,7 @@ function Register() {
           login
         </Box>
       </Typography>
-    </Stack>
+    </Box>
   );
 }
 

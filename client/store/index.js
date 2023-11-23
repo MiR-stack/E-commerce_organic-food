@@ -8,15 +8,18 @@ import { reviewApi } from "./apis/review";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import userSlice from "./slices/userSlice";
 
 const persistConfig = {
-  key: "persist",
+  key: "root",
   storage,
+  whitelist: ["authentication"],
 };
 
 const rootReducer = combineReducers({
   products: productSlice,
   authentication: authSlice,
+  user: userSlice,
   [authenticationApi.reducerPath]: authenticationApi.reducer,
   [productsApi.reducerPath]: productsApi.reducer,
   [commentApi.reducerPath]: commentApi.reducer,

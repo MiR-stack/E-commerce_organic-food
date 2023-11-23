@@ -5,7 +5,7 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 const query = qs.stringify({
   populate: {
     profile: {
-      fields: ["firstName", "lastName"],
+      fields: ["name"],
     },
     urlToImage: {
       fields: ["name", "alternativeText", "formats"],
@@ -23,7 +23,7 @@ async function Blog() {
 
   const blogs = blogsData.data.map((blog) => {
     const { title, description, profile, urlToImage } = blog.attributes;
-    const { firstName, lastName } = profile.data.attributes;
+    const { name } = profile.data.attributes;
     const { srcs, alt } = getFormatedImage(urlToImage);
 
     const readTime = Math.ceil(description.length / 200);
@@ -31,7 +31,7 @@ async function Blog() {
     return {
       title,
       description,
-      author: `${firstName} ${lastName}`,
+      author: name,
       image: { url: srcs.medium, alt },
       readTime,
     };

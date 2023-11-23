@@ -29,10 +29,7 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "visible",
-        "hidden"
-      ],
+      "enum": ["visible", "hidden"],
       "default": "visible"
     },
     "rating": {

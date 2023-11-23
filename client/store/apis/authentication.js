@@ -14,11 +14,13 @@ export const authenticationApi = createApi({
       }),
     }),
     register: builder.mutation({
-      query: ({ name, email, password }) => ({
+      query: ({ userName, email, password, firstName, lastName }) => ({
         url: "/auth/local/register",
         method: "POST",
         body: {
-          username: name,
+          firstName,
+          lastName,
+          username: userName,
           email,
           password,
         },
@@ -33,19 +35,14 @@ export const authenticationApi = createApi({
         },
       }),
     }),
-    // TODO:relation with user not working
     createProfile: builder.mutation({
-      query: ({ id, firstName, lastName, token }) => ({
+      query: ({ id, name, token }) => ({
         url: "/profiles",
         method: "POST",
         body: {
           data: {
+            name,
             customer_id: String(id),
-            firstName,
-            lastName,
-            customer: {
-              connect: [id],
-            },
           },
         },
         headers: {
@@ -58,9 +55,10 @@ export const authenticationApi = createApi({
         url: `/profiles/${id}`,
       }),
     }),
-    findMe: builder.query({
+    findMe: builder.mutation({
       query: (token) => ({
-        url: "/users/me",
+        url: "/users/me?populate=avatar",
+        method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,5 +73,5 @@ export const {
   useDeleteUserMutation,
   useCreateProfileMutation,
   useFindProfileQuery,
-  useFindMeQuery,
+  useFindMeMutation,
 } = authenticationApi;
