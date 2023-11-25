@@ -5,7 +5,7 @@ import { authenticationApi } from "./apis/authentication";
 import { productsApi } from "./apis/products";
 import { commentApi } from "./apis/comment";
 import { reviewApi } from "./apis/review";
-
+import { globalApi } from "./apis/global";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import userSlice from "./slices/userSlice";
@@ -24,6 +24,7 @@ const rootReducer = combineReducers({
   [productsApi.reducerPath]: productsApi.reducer,
   [commentApi.reducerPath]: commentApi.reducer,
   [reviewApi.reducerPath]: reviewApi.reducer,
+  [globalApi.reducerPath]: globalApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -35,6 +36,7 @@ export const store = configureStore({
       authenticationApi.middleware,
       productsApi.middleware,
       commentApi.middleware,
-      reviewApi.middleware
+      reviewApi.middleware,
+      globalApi.middleware
     ),
 });

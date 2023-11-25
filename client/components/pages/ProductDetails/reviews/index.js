@@ -8,10 +8,16 @@ import { useCreateReviewMutation } from "../../../../store/apis/review";
 import { useDispatch, useSelector } from "react-redux";
 import { handleOpen as handleOpenAuth } from "../../../../store/slices/authSlice";
 import { useEffect } from "react";
+import { useRevalidationMutation } from "../../../../store/apis/global";
+import { useParams } from "next/navigation";
 
 function Reviews({ id, reviews, handleReviewsLimit, total, limit, refetch }) {
   //handle review creator modal
   const { open, handleClose, handleOpen } = useModal();
+
+  // handle revalidation after creating of review
+  const [revalidate] = useRevalidationMutation();
+  const params = useParams();
 
   // create review
   const { token } = useSelector((state) => state.authentication);
@@ -31,6 +37,7 @@ function Reviews({ id, reviews, handleReviewsLimit, total, limit, refetch }) {
       rating,
       review: content,
     });
+    revalidate(params.slug);
   };
 
   // calculate avarage rating

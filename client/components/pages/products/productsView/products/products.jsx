@@ -21,8 +21,6 @@ function Products({ layout }) {
     refetch();
   }, []);
 
-  console.log(productsData);
-
   return (
     <Box sx={{ mt: 2 }}>
       <Typography variant="body2" sx={{ mb: 1 }}>
