@@ -14,7 +14,8 @@ function CommentBar({ id, reply, isOpen, threadOf }) {
   const { content, handleContent, resetComment } = useComment();
   const [createComment] = useCreateProductCommentMutation();
 
-  const { isLoggedIn, token } = useSelector((state) => state.authentication);
+  const { token } = useSelector((state) => state.authentication);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleSubmit = () => {
     if (!content) return;

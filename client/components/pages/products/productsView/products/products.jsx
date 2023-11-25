@@ -3,10 +3,12 @@ import useProducts from "./useProducts";
 import ProductCard from "../../../../shared/productCard";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Loading from "../../loading";
+import { useEffect } from "react";
 
 function Products({ layout }) {
   const {
     handlePage,
+    refetch,
     data,
     productCardConfig,
     GridProps,
@@ -14,6 +16,12 @@ function Products({ layout }) {
     productsData,
     page,
   } = useProducts(layout);
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
+  console.log(productsData);
 
   return (
     <Box sx={{ mt: 2 }}>

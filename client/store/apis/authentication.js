@@ -64,6 +64,11 @@ export const authenticationApi = createApi({
         },
       }),
     }),
+    getCustomers: builder.query({
+      query: (query) => ({
+        url: `users?${query}`,
+      }),
+    }),
   }),
 });
 
@@ -74,4 +79,5 @@ export const {
   useCreateProfileMutation,
   useFindProfileQuery,
   useFindMeMutation,
+  useGetCustomersQuery,
 } = authenticationApi;

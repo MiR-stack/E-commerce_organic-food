@@ -70,7 +70,7 @@ function useProducts(layout) {
     }
   );
 
-  const { data, isLoading } = useGetProductsQuery(url);
+  const { data, isLoading, refetch } = useGetProductsQuery(url);
   const productsData = data?.data.map((item) => {
     return {
       id: item.id,
@@ -100,6 +100,7 @@ function useProducts(layout) {
 
   return {
     handlePage,
+    refetch,
     data,
     productCardConfig,
     GridProps,

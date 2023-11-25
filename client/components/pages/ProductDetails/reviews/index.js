@@ -10,17 +10,17 @@ import { handleOpen as handleOpenAuth } from "../../../../store/slices/authSlice
 import { useEffect } from "react";
 
 function Reviews({ id, reviews, handleReviewsLimit, total, limit, refetch }) {
+  //handle review creator modal
   const { open, handleClose, handleOpen } = useModal();
 
-  const { isLoggedIn, token, user } = useSelector(
-    (state) => state.authentication
-  );
-  const [createReview, result] = useCreateReviewMutation();
+  // create review
+  const { token } = useSelector((state) => state.authentication);
+  const { isLoggedIn } = useSelector((state) => state.user);
 
+  const [createReview] = useCreateReviewMutation();
   const dispatch = useDispatch();
   const handleSubmit = ({ rating, content }) => {
     if (!content) return;
-
     if (!isLoggedIn) {
       dispatch(handleOpenAuth("login"));
       return;
@@ -33,12 +33,14 @@ function Reviews({ id, reviews, handleReviewsLimit, total, limit, refetch }) {
     });
   };
 
+  // calculate avarage rating
   const avarageRating =
     reviews.reduce((acc, cur) => {
       acc += cur.attributes.rating;
       return acc;
     }, 0) / reviews.length;
 
+  // refresh reviews
   useEffect(() => {
     refetch();
   }, []);
@@ -55,10 +57,10 @@ function Reviews({ id, reviews, handleReviewsLimit, total, limit, refetch }) {
             <Star />
           </Stack>
           <Stack gap={3} sx={{ p: { xs: 1, sm: 2 } }}>
-            {reviews.map(({ attributes: { rating, review, profile }, id }) => {
-              const { avatar, firstName, lastName } = profile.data.attributes;
+            {reviews.map(({ attributes: { rating, review, customer }, id }) => {
+              const { avatar, firstName, lastName } = customer;
               const data = {
-                avatar,
+                avatar: avatar ? { data: { attributes: avatar } } : null,
                 name: `${firstName} ${lastName}`,
                 rating,
                 content: review,

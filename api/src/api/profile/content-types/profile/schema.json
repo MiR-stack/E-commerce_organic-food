@@ -57,12 +57,6 @@
       "target": "api::refund.refund",
       "mappedBy": "profile"
     },
-    "store_review": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::store-review.store-review",
-      "inversedBy": "profile"
-    },
     "blogs": {
       "type": "relation",
       "relation": "oneToMany",

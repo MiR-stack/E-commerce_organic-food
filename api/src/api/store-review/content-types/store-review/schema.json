@@ -14,7 +14,10 @@
   "attributes": {
     "status": {
       "type": "enumeration",
-      "enum": ["show", "hide"],
+      "enum": [
+        "show",
+        "hide"
+      ],
       "required": false,
       "default": "show"
     },
@@ -30,16 +33,14 @@
       "min": 1,
       "default": 5
     },
-    "customer_id": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
     "profile": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::profile.profile",
-      "inversedBy": "store_review"
+      "target": "api::profile.profile"
+    },
+    "customer_id": {
+      "type": "string",
+      "required": true
     }
   }
 }

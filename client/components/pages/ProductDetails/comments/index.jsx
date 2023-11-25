@@ -38,7 +38,8 @@ const Comment = ({
     setRepliesIsOpen(true);
   };
 
-  const { token, user } = useSelector((state) => state.authentication);
+  const { token } = useSelector((state) => state.authentication);
+  const { user } = useSelector((state) => state.user);
   const [deleteComment] = useDeleteProductCommentMutation();
   const handleDelete = () => {
     deleteComment({ productId, commentId, authorId, token });
@@ -58,6 +59,7 @@ const Comment = ({
         <CustomAvater
           name={name}
           styles={reply ? styles.reply : styles.comment}
+          config={{ name: "sm" }}
         />
         <Stack spacing={{ sm: 2 }} sx={{ width: "100%" }}>
           <Stack
@@ -99,7 +101,7 @@ const Comment = ({
                 >
                   reply
                 </Button>
-                {authorId === user?.id ? (
+                {authorId && authorId === user?.id ? (
                   <Button
                     size={reply ? "small" : "large"}
                     color="warning"

@@ -5,14 +5,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Reviews from "../reviews";
 import Comments from "../comments";
-import { useGetProductCommentsQuery } from "../../../../store/apis/comment";
-import { useEffect, useState } from "react";
-import qs from "qs";
-import { useGetReviewsQuery } from "../../../../store/apis/review";
-
-const commentsUrl = qs.stringify({
-  sort: ["createdAt:desc"],
-});
+import useDetails from "./useDetails";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,32 +39,17 @@ function a11yProps(index) {
 }
 
 export default function Details({ id, details }) {
-  const [value, setValue] = useState(0);
-
-  const handleChange = (_event, newValue) => {
-    setValue(newValue);
-  };
-
-  // FIXME: pagination is not working
   const {
-    data: comments,
-    isLoading,
-    refetch: commentsRefetch,
-  } = useGetProductCommentsQuery({ id, url: commentsUrl });
-  const totalComments = comments?.reduce((acc, curr) => {
-    acc += curr.children.length + 1;
-    return acc;
-  }, 0);
-
-  // reviews
-  const [reviewsLimit, setReviewsLimit] = useState(5);
-  const { data: reviews, refetch: reviewsRefetch } = useGetReviewsQuery({
-    productId: id,
-    limit: reviewsLimit,
-  });
-  const handleReviewsLimit = () => {
-    setReviewsLimit((prev) => prev + 5);
-  };
+    value,
+    handleChange,
+    comments,
+    totalComments,
+    commentsRefetch,
+    reviews,
+    reviewsLimit,
+    handleReviewsLimit,
+    reviewsRefetch,
+  } = useDetails(id);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -84,7 +62,7 @@ export default function Details({ id, details }) {
           <Tab label="details" {...a11yProps(0)} />
           <Tab label={`comments (${totalComments || 0})`} {...a11yProps(1)} />
           <Tab
-            label={`reviews (${reviews?.meta.pagination.total})`}
+            label={`reviews (${reviews?.meta.pagination.total || 0})`}
             {...a11yProps(2)}
           />
         </Tabs>

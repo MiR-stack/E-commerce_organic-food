@@ -2,13 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import qs from "qs";
 
 const url = qs.stringify({
-  populate: {
-    profile: {
-      populate: ["avatar"],
-      fields: ["firstName", "lastName"],
-    },
-  },
-  fields: ["rating", "review"],
+  fields: ["rating", "review", "customer_id"],
   filters: {
     status: {
       $eq: "visible",
