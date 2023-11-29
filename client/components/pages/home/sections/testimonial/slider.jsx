@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "./style.css";
 
 function TestimonialSlider({ testimonials }) {
   return (
@@ -32,6 +31,9 @@ function TestimonialSlider({ testimonials }) {
         },
       }}
       modules={[Navigation]}
+      style={{
+        "--swiper-navigation-color": "black",
+      }}
     >
       {testimonials.map((testimonial) => {
         const {

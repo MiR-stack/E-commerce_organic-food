@@ -9,7 +9,7 @@ import {
 import Register from "./register";
 import Login from "./login";
 import { IconButton, Box, Stack, Button, Divider, Avatar } from "@mui/material";
-import { Close, Google } from "@mui/icons-material";
+import { Google } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
 import CustomMenu from "../navbar/menus/CustomMenu";
@@ -42,12 +42,9 @@ function AuthModal({ modal, component }) {
           width: "100%",
           display: "flex",
           justifyContent: "flex-end",
+          pt: 3,
         }}
-      >
-        <IconButton onClick={() => dispatch(handleClose())}>
-          <Close />
-        </IconButton>
-      </Box>
+      ></Box>
       <Stack alignItems={"center"} gap={1}>
         <Button
           variant="outlined"

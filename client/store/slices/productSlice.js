@@ -29,7 +29,7 @@ export const productSlice = createSlice({
         (product) => product.id === action.payload.id
       );
       if (product) {
-        product.quantity++;
+        product.quantity += action.payload.quantity || 1;
       } else {
         state.carts.push(action.payload);
       }

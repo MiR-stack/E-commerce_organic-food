@@ -132,4 +132,4 @@ Visit http://localhost:3000 in your browser to access the organic foods marketpl
 
 ## API Endpoints
 
-here you can find documentation http://localhost:1337/documentation/v1.0.0#/
+here you can find documentation https://strapi-5mbn.onrender.com/documentation/v1.0.0#/Global

@@ -18,6 +18,8 @@ import {
 import { useSnackbar } from "notistack";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+import { openQuickView } from "../../../store/slices/quickViewSlice";
+import Subscribe from "./subscribe";
 
 const defaultProps = {
   config: {
@@ -33,26 +35,35 @@ const defaultProps = {
 function CardFooter({ data, config }) {
   config = { ...defaultProps.config, ...config };
   const { favoriteLg, size, favorite, quickView } = config;
-  const disPatch = useDispatch();
+
   const { enqueueSnackbar } = useSnackbar();
 
   if (!data) return;
 
   if (!data.quantity) data.quantity = 1;
 
+  const dispatch = useDispatch();
+
   function handleAddCart() {
-    disPatch(addCart(data));
+    dispatch(addCart(data));
     enqueueSnackbar("product added to cart", {
       variant: "success",
     });
   }
+
   function handleAddFavorite() {
-    disPatch(addFavorite(data));
+    const favoriteProduct = { ...data, quantity: 1 };
+    dispatch(addFavorite(favoriteProduct));
     enqueueSnackbar("product added to favorite", { variant: "success" });
   }
+
   function handleRemoveFavorite() {
-    disPatch(removeFavorite(data.id));
+    dispatch(removeFavorite(data.id));
     enqueueSnackbar("product removed from favorite", { variant: "warning" });
+  }
+
+  function handleQuickView() {
+    dispatch(openQuickView(data));
   }
 
   const products = useSelector((state) => state.products.favorites);
@@ -70,35 +81,43 @@ function CardFooter({ data, config }) {
 
   return (
     <CardActions sx={{ py: 1, px: 0 }}>
-      <Stack direction="row">
-        <Stack
-          direction={"row"}
-          sx={{
-            border: "1px solid #016a70",
-            borderRadius: "5px",
-            overflow: "hidden",
-          }}
-        >
-          {favorite && favoriteLg && (
+      <Stack direction="row" alignItems={"center"}>
+        {config.subscribe ? (
+          <Subscribe />
+        ) : (
+          <Stack
+            direction={"row"}
+            sx={{
+              border: "1px solid #016a70",
+              borderRadius: "5px",
+              overflow: "hidden",
+            }}
+          >
+            {favorite && favoriteLg && (
+              <Button
+                onClick={handleAddFavorite}
+                sx={{ border: "none" }}
+                size={size}
+              >
+                add favorite
+              </Button>
+            )}
+            {quickView && (
+              <Button sx={{ border: "none" }} onClick={handleQuickView}>
+                quick view
+              </Button>
+            )}
             <Button
-              onClick={handleAddFavorite}
-              sx={{ border: "none" }}
+              variant="contained"
+              endIcon={<ShoppingCartOutlinedIcon />}
+              onClick={handleAddCart}
+              sx={{ borderRadius: "0" }}
               size={size}
             >
-              add favorite
+              {config.shortTxt ? "" : "add to"} cart
             </Button>
-          )}
-          {quickView && <Button sx={{ border: "none" }}>quick view</Button>}
-          <Button
-            variant="contained"
-            endIcon={<ShoppingCartOutlinedIcon />}
-            onClick={handleAddCart}
-            sx={{ borderRadius: "0" }}
-            size={size}
-          >
-            {config.shortTxt ? "" : "add to"} cart
-          </Button>
-        </Stack>
+          </Stack>
+        )}
         {favorite && !favoriteLg && (
           <Checkbox
             icon={<FavoriteBorder />}

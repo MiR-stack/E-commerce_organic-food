@@ -22,7 +22,6 @@ async function RelatedProducts({ relatedProducts, category, slug }) {
     },
     [slug]
   );
-  console.log(slugs);
 
   if (relatedProducts.length < 3) {
     const relatedProductsQuery = qs.stringify({
@@ -31,6 +30,8 @@ async function RelatedProducts({ relatedProducts, category, slug }) {
         "name",
         "slug",
         "price",
+        "stockStatus",
+        "weight",
         "discount",
         "salePrice",
         "ratingCount",
@@ -51,7 +52,7 @@ async function RelatedProducts({ relatedProducts, category, slug }) {
       },
     });
     const url = getStrapiUrl(`/products?${relatedProductsQuery}`);
-    const data = await getData(url, [slug]);
+    const data = await getData(url, ["relatedProducts", slug]);
     relatedProducts = [...relatedProducts, ...data.data];
   }
 

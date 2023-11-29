@@ -3,8 +3,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "./style.css";
-
 import { Pagination, Autoplay } from "swiper/modules";
 import { Box, Typography, Button, Stack } from "@mui/material";
 import Image from "next/image";
@@ -28,7 +26,16 @@ const Offer = ({
 
   return (
     <>
-      <Image src={src} alt={alternativeText} fill priority />
+      <Image
+        src={src}
+        alt={alternativeText}
+        fill
+        priority
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
+      />
       <Backdrop />
       <Content
         sx={{
@@ -81,10 +88,21 @@ export default function Hero({ data }) {
         }}
         loop={true}
         modules={[Pagination, Autoplay]}
-        className="mySwiper"
+        style={{
+          "--swiper-pagination-color": "#fff",
+          height: "100%",
+          width: "100%",
+        }}
       >
         {data.map((offer) => (
-          <SwiperSlide key={offer.id}>
+          <SwiperSlide
+            key={offer.id}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Offer offer={offer} />
           </SwiperSlide>
         ))}

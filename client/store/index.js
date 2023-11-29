@@ -9,17 +9,19 @@ import { globalApi } from "./apis/global";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import userSlice from "./slices/userSlice";
+import quickViewSlice from "./slices/quickViewSlice";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["authentication"],
+  whitelist: ["authentication", "products"],
 };
 
 const rootReducer = combineReducers({
   products: productSlice,
   authentication: authSlice,
   user: userSlice,
+  quickView: quickViewSlice,
   [authenticationApi.reducerPath]: authenticationApi.reducer,
   [productsApi.reducerPath]: productsApi.reducer,
   [commentApi.reducerPath]: commentApi.reducer,

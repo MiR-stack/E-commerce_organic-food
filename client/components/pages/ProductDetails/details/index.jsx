@@ -52,7 +52,7 @@ export default function Details({ id, details }) {
   } = useDetails(id);
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", pt: 2 }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}

@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import { getData, getStrapiMedia, getStrapiUrl } from "../../../utils";
-import ShortView from "../../../components/pages/ProductDetails/quickView";
+import ShortView from "../../../components/shared/productShortView";
 import qs from "qs";
 import variationsAdapter from "../../../adapters/variations";
 import Details from "../../../components/pages/ProductDetails/details";
@@ -52,7 +52,7 @@ async function ProductDetails({ params }) {
   });
 
   const url = getStrapiUrl(`/products?${productQuery}`);
-  const products = await getData(url, [params.slug]);
+  const products = await getData(url, ["productDetails", params.slug]);
   const {
     id,
     attributes: {

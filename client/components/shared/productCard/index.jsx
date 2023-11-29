@@ -11,7 +11,15 @@ import CardFooter from "./cardFooter";
 import { getStrapiMedia } from "../../../utils/index";
 import Link from "next/link";
 
+const defaultConfig = {
+  direction: "column",
+  mediaHeight: 100,
+  mediaWidht: "100%",
+  size: "sm",
+};
+
 function ProductCard({ data, config }) {
+  config = { ...defaultConfig, ...config };
   const { images, name, avarageRating, salePrice, price, discount } = data;
   const { url, name: alt } = images.data[0].attributes.formats.thumbnail;
   const thumbnail = getStrapiMedia(url);

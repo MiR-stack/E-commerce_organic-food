@@ -31,6 +31,9 @@ function Categories({ categories }) {
         },
       }}
       modules={[Navigation]}
+      style={{
+        "--swiper-navigation-color": "#fff",
+      }}
     >
       {categories.data.map((category) => (
         <SwiperSlide key={category.id}>

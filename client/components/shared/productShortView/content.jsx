@@ -1,15 +1,7 @@
-import {
-  IconButton,
-  Rating,
-  Stack,
-  Typography,
-  styled,
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-} from "@mui/material";
-import { Facebook, Twitter, Instagram } from "@mui/icons-material";
+import { Rating, Stack, Typography } from "@mui/material";
 import CSR from "./CSR";
+import Share from "./CSR/Share";
+import { TitleText } from "./CSR/utils";
 
 function Content({
   id,
@@ -28,6 +20,7 @@ function Content({
     salePrice,
     price,
     thumbnail,
+    stockStatus,
   };
 
   const stockStatusColors = {
@@ -35,11 +28,6 @@ function Content({
     available: "#00695C45",
     "coming soon": "#bbdefb",
   };
-
-  //FIXME: title text need client side render
-  const TitleText = styled(Typography)((theme) => ({
-    fontWeight: "bold",
-  }));
 
   return (
     <Stack gap={1} alignItems={"flex-start"}>
@@ -80,18 +68,7 @@ function Content({
       </Stack> */}
       <CSR data={cartData} />
       <Typography variant="body1">{shortDescription}</Typography>
-      <Stack direction={"row"} alignItems={"center"} justifyContent={"center"}>
-        <Typography variant="h6"> share:</Typography>
-        <IconButton>
-          <Facebook />
-        </IconButton>
-        <IconButton>
-          <Twitter />
-        </IconButton>
-        <IconButton>
-          <Instagram />
-        </IconButton>
-      </Stack>
+      <Share />
     </Stack>
   );
 }

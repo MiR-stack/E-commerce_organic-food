@@ -8,6 +8,7 @@ import RightSideIcons from "./rightSide";
 import Link from "next/link";
 import { Link as MuiLink } from "@mui/material";
 import MobileNav from "./mobileNav";
+import QuickView from "./utils/quickView";
 
 function Navbar({ window, navData }) {
   const { navbar, categories } = navData;
@@ -22,8 +23,6 @@ function Navbar({ window, navData }) {
       label: name,
     };
   });
-
-  console.log("this is window:", window);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -53,6 +52,7 @@ function Navbar({ window, navData }) {
             loginOptions={loginOptions}
             logoutOptions={logoutOptions}
           />
+          <QuickView />
         </Toolbar>
       </AppBar>
     </Box>
