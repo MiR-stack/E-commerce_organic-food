@@ -4,6 +4,8 @@
 
 This project is a Next.js and Strapi-based organic foods marketplace. It provides a platform for customers to explore and purchase organic products, and for admin to manage his product listings and the overall operation of the platform.
 
+**live site:** https://unicornbd.vercel.app/
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -18,7 +20,7 @@ This project is a Next.js and Strapi-based organic foods marketplace. It provide
 
 ## installation
 
-## Prerequisites
+### Prerequisites
 
 Make sure you have the following software installed on your machine:
 
@@ -31,9 +33,11 @@ Make sure you have the following software installed on your machine:
 
 ```
 # Clone the repository
+
 git clone https://github.com/MiR-stack/E-commerce_organic-food.git
 
 # Navigate to the project directory
+
 cd E-Commerce_organic-food
 
 ```
