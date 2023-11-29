@@ -6,22 +6,26 @@ This project is a Next.js and Strapi-based organic foods marketplace. It provide
 
 ## Table of Contents
 
--[Installation](#installation) -[clone the repository](#clone-the-repository) -[install dependecies](#install-dependencies) -[Configuration](#configuration) -[Usage](#usage) -[set up strapi](#set-up-strapi) -[Folder Structure](#technologies-used) -[API Endpoints](#api-endpoints)
-Screenshots
-Contributing
-License
-Installation
-Provide step-by-step instructions on how to set up and run your project locally.
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [clone the repository](#clone-the-repository)
+  - [install dependecies](#install-dependencies)
+- [Configuration](#configuration)
+- [Usage](#usage)
+  - [set up strapi](#set-up-strapi)
+- [Folder Structure](#technologies-used)
+- [API Endpoints](#api-endpoints)
 
 ## installation
 
-**Prerequisites**
+## Prerequisites
+
 Make sure you have the following software installed on your machine:
 
-Node.js: [Download Node.js](https://nodejs.org/en/download)
-npm (Node Package Manager): Included with Node.js installation
-PostgreSQL: [Download PostgreSQL](https://www.postgresql.org/download/)
-Cloudinary (cloudinary account for image upload): [Create an account](https://console.cloudinary.com/users/register_free)
+1. Node.js: [Download Node.js](https://nodejs.org/en/download)
+2. npm (Node Package Manager): Included with Node.js installation
+3. PostgreSQL: [Download PostgreSQL](https://www.postgresql.org/download/)
+4. Cloudinary (cloudinary account for image upload): [Create an account](https://console.cloudinary.com/users/register_free)
 
 ### Clone the repository
 
@@ -77,7 +81,7 @@ DATABASE_SSL=false
 JWT_SECRET= give an jwt secret
 CUSTOMER_JWT_SECRET= give an customer jwt secret
 
-#cloudinary
+# cloudinary
 CLOUDINARY_NAME =cloudinary name
 CLOUDINARY_KEY= cloudinary key
 CLOUDINARY_SECRET=cloudinary secret
@@ -111,16 +115,16 @@ Visit http://localhost:3000 in your browser to access the organic foods marketpl
 
 ## Technologies Used
 
--Next.js
--Strapi
--jsonwebToken
--redux tookit
--data-fns
--formik
--delve
--proptypes
--notistick
--swiper
+- Next.js
+- Strapi
+- jsonwebToken
+- redux tookit
+- data-fns
+- formik
+- delve
+- proptypes
+- notistick
+- swiper
 
 ## API Endpoints
 
