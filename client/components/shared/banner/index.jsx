@@ -1,16 +1,16 @@
 import { Box, Stack, Typography } from "@mui/material";
-import CustomBreadcrumbs from "../../../shared/Breadcrumbs";
-import { getBanner } from "../../../../utils";
+import CustomBreadcrumbs from "../Breadcrumbs";
 import Image from "next/image";
-import { Backdrop } from "../../../utils";
+import { Backdrop } from "../../utils";
 
-async function Banner({ children, name }) {
-  const {
-    srcs: { large },
-    alt,
-    breadcrumb,
-  } = await getBanner("products");
-
+async function Banner({
+  children,
+  name,
+  breadcrumbs,
+  currentPage,
+  image,
+  opacity,
+}) {
   return (
     <Box
       sx={{
@@ -24,8 +24,8 @@ async function Banner({ children, name }) {
       component={"div"}
     >
       <Image
-        alt={alt}
-        src={large}
+        alt={image.alt || "image"}
+        src={image.src}
         quality={100}
         fill
         sizes="100%"
@@ -34,18 +34,26 @@ async function Banner({ children, name }) {
         }}
         priority
       />
-      <Backdrop />
-      <CustomBreadcrumbs links={breadcrumb} currentPage={"products"} />
+      <Backdrop opacity={opacity} />
+      <CustomBreadcrumbs
+        links={breadcrumbs}
+        currentPage={currentPage}
+        styles={{ position: "absolute" }}
+      />
       <Stack
         component={"main"}
         alignItems={"center"}
         justifyContent={"center"}
         spacing={{ xs: 1, sm: 2 }}
-        sx={{ minHeight: { sm: 100, xs: 60 }, pt: { xs: 1, sm: 0 } }}
+        sx={{ minHeight: { sm: 120, xs: 80 }, pt: { xs: 1, sm: 0 } }}
       >
         {name ? (
-          <Typography variant="h4" component={h2}>
-            {name}{" "}
+          <Typography
+            variant="h4"
+            component={"h2"}
+            sx={{ color: "white", zIndex: 3 }}
+          >
+            {name}
           </Typography>
         ) : (
           ""

@@ -10,6 +10,7 @@ function CustomBreadcrumbs({ links, currentPage, styles }) {
         zIndex: 3,
         position: "relative",
         color: "white",
+        textTransform: "capitalize",
         ...styles,
       }}
     >

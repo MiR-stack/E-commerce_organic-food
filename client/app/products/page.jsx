@@ -1,13 +1,24 @@
 import { Container } from "@mui/material";
 import Main from "../../components/pages/products/main";
-import Banner from "../../components/pages/products/banner";
+import Banner from "../../components/shared/banner";
 import BannerContent from "./bannerContent";
+import { getBanner } from "../../utils";
 
 async function Products() {
+  const {
+    srcs: { large },
+    alt,
+    breadcrumb,
+  } = await getBanner("products");
+
   return (
     <Container>
       <span>
-        <Banner>
+        <Banner
+          image={{ src: large, alt }}
+          currentPage={"products"}
+          breadcrumbs={breadcrumb}
+        >
           <BannerContent />
         </Banner>
         <Main />

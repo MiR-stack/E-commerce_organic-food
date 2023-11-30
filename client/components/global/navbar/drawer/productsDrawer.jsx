@@ -33,7 +33,7 @@ function ProductsDrawer({
     sx: {
       "& .MuiDrawer-paper": {
         boxSizing: "border-box",
-        width: { xs: 330, sm: 400 },
+        width: { xs: "100%", sm: 400 },
       },
     },
     anchor: "right",
@@ -73,7 +73,7 @@ function ProductsDrawer({
         </Stack>
         {quantity > 0 ? (
           <Box>
-            <Stack gap={2} sx={{ px: { xs: 1, sm: 2, md: 3 }, pt: 3 }}>
+            <Stack gap={2} sx={{ px: { xs: 2, md: 3 }, pt: 3 }}>
               {products.map((product) => (
                 <div key={product.id}>
                   <Stack
@@ -91,7 +91,7 @@ function ProductsDrawer({
                     >
                       <Image
                         src={product.thumbnail}
-                        alt="sd"
+                        alt={product.name}
                         height={80}
                         width={100}
                       />
@@ -175,10 +175,16 @@ function ProductsDrawer({
                 </Stack>
                 <Stack direction={"row"} sx={{ px: 2, pb: 2 }} gap={2}>
                   <Link href="/cart" legacyBehavior>
-                    <Button variant="outlined">view cart</Button>
+                    <Button variant="outlined" onClick={handleDrawerToggle}>
+                      view cart
+                    </Button>
                   </Link>
-                  <Link href={"/checkout"}>
-                    <Button variant="contained" color="primary">
+                  <Link href={"/checkout"} legacyBehavior>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleDrawerToggle}
+                    >
                       checkout
                     </Button>
                   </Link>
