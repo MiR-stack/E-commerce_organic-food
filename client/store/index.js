@@ -10,6 +10,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import userSlice from "./slices/userSlice";
 import quickViewSlice from "./slices/quickViewSlice";
+import { blogsApi } from "./apis/blogs";
 
 const persistConfig = {
   key: "root",
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   [commentApi.reducerPath]: commentApi.reducer,
   [reviewApi.reducerPath]: reviewApi.reducer,
   [globalApi.reducerPath]: globalApi.reducer,
+  [blogsApi.reducerPath]: blogsApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -39,6 +41,7 @@ export const store = configureStore({
       productsApi.middleware,
       commentApi.middleware,
       reviewApi.middleware,
-      globalApi.middleware
+      globalApi.middleware,
+      blogsApi.middleware
     ),
 });

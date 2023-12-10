@@ -14,8 +14,8 @@ async function Banner({
   return (
     <Box
       sx={{
-        p: { xs: 1, sm: 2 },
-        my: { xs: 1, sm: 2 },
+        p: 2,
+        my: 2,
         borderRadius: 2,
         bgcolor: "green",
         position: "relative",
@@ -40,6 +40,7 @@ async function Banner({
         currentPage={currentPage}
         styles={{ position: "absolute" }}
       />
+      <Box sx={{ height: "15px" }} />
       <Stack
         component={"main"}
         alignItems={"center"}

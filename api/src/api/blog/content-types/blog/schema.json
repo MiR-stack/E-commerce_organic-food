@@ -43,10 +43,20 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
-    "url": {
-      "type": "string"
+    "slug": {
+      "type": "string",
+      "required": true
+    },
+    "permalink": {
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-11-30T16:20:42.472Z"
+    "x-generation-date": "2023-12-10T07:21:55.771Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1305,7 +1305,9 @@
         "properties": {
           "data": {
             "required": [
-              "title"
+              "title",
+              "slug",
+              "permalink"
             ],
             "type": "object",
             "properties": {
@@ -1343,7 +1345,10 @@
                 ],
                 "example": "string or id"
               },
-              "url": {
+              "slug": {
+                "type": "string"
+              },
+              "permalink": {
                 "type": "string"
               }
             }
@@ -1399,7 +1404,9 @@
       "Blog": {
         "type": "object",
         "required": [
-          "title"
+          "title",
+          "slug",
+          "permalink"
         ],
         "properties": {
           "title": {
@@ -5082,7 +5089,10 @@
                                         }
                                       }
                                     },
-                                    "url": {
+                                    "slug": {
+                                      "type": "string"
+                                    },
+                                    "permalink": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -5335,7 +5345,10 @@
               }
             }
           },
-          "url": {
+          "slug": {
+            "type": "string"
+          },
+          "permalink": {
             "type": "string"
           },
           "createdAt": {
@@ -10318,7 +10331,10 @@
                                                                     }
                                                                   }
                                                                 },
-                                                                "url": {
+                                                                "slug": {
+                                                                  "type": "string"
+                                                                },
+                                                                "permalink": {
                                                                   "type": "string"
                                                                 },
                                                                 "createdAt": {
@@ -17433,7 +17449,10 @@
                                                                     }
                                                                   }
                                                                 },
-                                                                "url": {
+                                                                "slug": {
+                                                                  "type": "string"
+                                                                },
+                                                                "permalink": {
                                                                   "type": "string"
                                                                 },
                                                                 "createdAt": {
@@ -21633,7 +21652,10 @@
                                                                                 }
                                                                               }
                                                                             },
-                                                                            "url": {
+                                                                            "slug": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "permalink": {
                                                                               "type": "string"
                                                                             },
                                                                             "createdAt": {
@@ -25966,7 +25988,10 @@
                                                                                   }
                                                                                 }
                                                                               },
-                                                                              "url": {
+                                                                              "slug": {
+                                                                                "type": "string"
+                                                                              },
+                                                                              "permalink": {
                                                                                 "type": "string"
                                                                               },
                                                                               "createdAt": {
@@ -30169,7 +30194,10 @@
                                         }
                                       }
                                     },
-                                    "url": {
+                                    "slug": {
+                                      "type": "string"
+                                    },
+                                    "permalink": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -34097,7 +34125,10 @@
                                                                   }
                                                                 }
                                                               },
-                                                              "url": {
+                                                              "slug": {
+                                                                "type": "string"
+                                                              },
+                                                              "permalink": {
                                                                 "type": "string"
                                                               },
                                                               "createdAt": {
@@ -38592,7 +38623,10 @@
                                         }
                                       }
                                     },
-                                    "url": {
+                                    "slug": {
+                                      "type": "string"
+                                    },
+                                    "permalink": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -42450,7 +42484,10 @@
                                                                     }
                                                                   }
                                                                 },
-                                                                "url": {
+                                                                "slug": {
+                                                                  "type": "string"
+                                                                },
+                                                                "permalink": {
                                                                   "type": "string"
                                                                 },
                                                                 "createdAt": {
@@ -46467,7 +46504,10 @@
                                                                   }
                                                                 }
                                                               },
-                                                              "url": {
+                                                              "slug": {
+                                                                "type": "string"
+                                                              },
+                                                              "permalink": {
                                                                 "type": "string"
                                                               },
                                                               "createdAt": {

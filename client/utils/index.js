@@ -7,11 +7,15 @@ export const getStrapiUrl = (url) => {
 /**
  *
  * @param {String} url
- * @param {Array} tags
+ * @param {[String]} tags
+ * @param {Boolean} noCach
  * @returns {Array}
  */
-export const getData = async (url, tags) => {
-  const res = await fetch(url, { next: { tags } });
+export const getData = async (url, tags, noCach) => {
+  const res = await fetch(url, {
+    cache: noCach ? "no-store" : "default",
+    next: { tags },
+  });
 
   if (!res.ok) {
     throw new Error("unable to fetch");
@@ -130,6 +134,16 @@ export const GetProduct = async (prefix, kind) => {
     return data.json();
   } catch (e) {
     throw new Error(e);
+  }
+};
+
+export const getBlogs = async (query) => {
+  const url = getStrapiUrl(`/blogs?${query}`);
+
+  try {
+    return await getData(url, [], true);
+  } catch (err) {
+    throw new Error(err);
   }
 };
 

@@ -4,7 +4,7 @@ import { IconButton, InputBase, Paper, styled } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import Link from "next/link";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const SearcIconWraper = styled(Link)(() => ({
   background: "transparent",
@@ -28,19 +28,22 @@ const Search = styled(Paper)(({ theme }) => ({
   },
 }));
 
-const SearchBar = ({ open, config }) => {
+const SearchBar = ({ open, styles, prefix = "products" }) => {
   const pathName = usePathname();
+  const blackLists = ["/products", "/blogs"];
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const handleReset = () => setSearchTerm("");
+  const params = useSearchParams();
+  const searchQuery = params.get("s");
+
+  const [searchTerm, setSearchTerm] = useState(searchQuery);
 
   return (
     <Search
       elevation={0}
       variant="outlined"
       sx={{
-        display: !open && pathName === "/products" ? "none" : "flex",
-        ...config,
+        display: !open && blackLists.includes(pathName) ? "none" : "flex",
+        ...styles,
       }}
     >
       <Input
@@ -48,13 +51,11 @@ const SearchBar = ({ open, config }) => {
         key={"search"}
         placeholder="Search..."
         value={searchTerm}
+        type="search"
         sx={{ width: "100%" }}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <SearcIconWraper
-        href={`/products?s=${searchTerm.split(" ").join("%")}`}
-        onClick={handleReset}
-      >
+      <SearcIconWraper href={`/${prefix}?s=${searchTerm.split(" ").join("%")}`}>
         <IconButton aria-label="search" disableRipple={true}>
           <SearchIcon />
         </IconButton>
