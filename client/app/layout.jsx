@@ -6,6 +6,7 @@ import Providers from "../store/providers";
 import ThemeRegistry from "../theme/ThemeRegistry";
 import Footer from "../components/global/footer";
 import SnackbarProvider from "../components/utils/snackbarProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,6 +48,7 @@ export default async function RootLayout({ children }) {
               <Navbar navData={navData} />
               <Toolbar />
               {children}
+              <SpeedInsights />
               <Footer footerData={footerData} />
             </SnackbarProvider>
           </ThemeRegistry>

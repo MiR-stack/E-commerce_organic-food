@@ -35,7 +35,7 @@ const SearchBar = ({ open, styles, prefix = "products" }) => {
   const params = useSearchParams();
   const searchQuery = params.get("s");
 
-  const [searchTerm, setSearchTerm] = useState(searchQuery);
+  const [searchTerm, setSearchTerm] = useState(searchQuery || "");
 
   return (
     <Search
