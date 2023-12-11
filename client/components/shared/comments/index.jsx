@@ -1,10 +1,11 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import CommentBar from "./commentBar";
-import CustomAvater from "../../../utils/avatar";
+import CustomAvater from "../../utils/avatar";
 import { useEffect, useState } from "react";
-import { useDeleteProductCommentMutation } from "../../../../store/apis/comment";
+import { useDeleteProductCommentMutation } from "../../../store/apis/comment";
 import { useSelector } from "react-redux";
 import EmptyComments from "./emptyComments";
+import PropTypes from "prop-types";
 
 const styles = {
   comment: {
@@ -18,7 +19,8 @@ const styles = {
 };
 
 const Comment = ({
-  productId,
+  modalName,
+  componentId,
   id,
   commentId,
   authorId,
@@ -42,7 +44,7 @@ const Comment = ({
   const { user } = useSelector((state) => state.user);
   const [deleteComment] = useDeleteProductCommentMutation();
   const handleDelete = () => {
-    deleteComment({ productId, commentId, authorId, token });
+    deleteComment({ modalName, componentId, commentId, authorId, token });
   };
 
   return (
@@ -122,10 +124,11 @@ const Comment = ({
           {replies.map((reply) => (
             <Comment
               key={reply.id}
+              modalName={modalName}
               commentId={reply.id}
               authorId={reply.author.id}
               id={id}
-              productId={productId}
+              componentId={componentId}
               name={reply.author.name}
               content={reply.content}
               replies={reply.children}
@@ -137,15 +140,22 @@ const Comment = ({
         ""
       )}
 
-      <CommentBar id={productId} isOpen={replybar} reply threadOf={id} />
+      <CommentBar
+        modalName={modalName}
+        id={componentId}
+        isOpen={replybar}
+        reply
+        threadOf={id}
+      />
     </Stack>
   );
 };
 
-function Comments({ id, comments, refetch }) {
+function Comments({ modalName, id, comments, refetch }) {
   useEffect(() => {
     refetch();
   }, []);
+
   return (
     <Box>
       {comments.length > 0 ? (
@@ -153,22 +163,40 @@ function Comments({ id, comments, refetch }) {
           {comments?.map((comment) => (
             <Comment
               key={comment.id}
+              modalName={modalName}
               id={comment.id}
               commentId={comment.id}
               authorId={comment.author.id}
               name={comment.author.name}
               content={comment.content}
               replies={comment.children}
-              productId={id}
+              componentId={id}
             />
           ))}
         </Stack>
       ) : (
         <EmptyComments />
       )}
-      <CommentBar id={id} />
+      <CommentBar modalName={modalName} id={id} />
     </Box>
   );
 }
 
 export default Comments;
+
+Comments.propTypes = {
+  modalName: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      author: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+      content: PropTypes.string.isRequired,
+      children: PropTypes.array,
+    })
+  ),
+  refetch: PropTypes.func,
+};

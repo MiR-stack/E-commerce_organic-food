@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Reviews from "../reviews";
-import Comments from "../comments";
+import Comments from "../../../shared/comments";
 import useDetails from "./useDetails";
 
 function CustomTabPanel(props) {
@@ -71,7 +71,12 @@ export default function Details({ id, details }) {
         <div dangerouslySetInnerHTML={{ __html: details }} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <Comments id={id} comments={comments} refetch={commentsRefetch} />
+        <Comments
+          modalName={"api::product.product:"}
+          id={id}
+          comments={comments}
+          refetch={commentsRefetch}
+        />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <Reviews

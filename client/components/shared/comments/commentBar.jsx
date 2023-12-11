@@ -6,11 +6,11 @@ import {
   Typography,
 } from "@mui/material";
 import useComment from "./useComment";
-import { useCreateProductCommentMutation } from "../../../../store/apis/comment";
+import { useCreateProductCommentMutation } from "../../../store/apis/comment";
 import { useDispatch, useSelector } from "react-redux";
-import { handleOpen } from "../../../../store/slices/authSlice";
+import { handleOpen } from "../../../store/slices/authSlice";
 
-function CommentBar({ id, reply, isOpen, threadOf }) {
+function CommentBar({ modalName, id, reply, isOpen, threadOf }) {
   const { content, handleContent, resetComment } = useComment();
   const [createComment] = useCreateProductCommentMutation();
 
@@ -24,7 +24,7 @@ function CommentBar({ id, reply, isOpen, threadOf }) {
       dispatch(handleOpen("login"));
       return;
     }
-    createComment({ id, content, threadOf, token });
+    createComment({ modalName, id, content, threadOf, token });
     resetComment();
     isOpen = false;
   };

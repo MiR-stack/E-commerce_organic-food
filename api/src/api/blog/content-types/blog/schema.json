@@ -31,14 +31,6 @@
       "repeatable": false,
       "component": "shared.seo"
     },
-    "content": {
-      "type": "customField",
-      "options": {
-        "output": "Markdown",
-        "preset": "standard"
-      },
-      "customField": "plugin::ckeditor.CKEditor"
-    },
     "urlToImage": {
       "type": "media",
       "multiple": false,
@@ -52,11 +44,19 @@
     },
     "slug": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "permalink": {
       "type": "string",
       "required": true
+    },
+    "content": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }

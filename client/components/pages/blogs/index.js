@@ -67,7 +67,7 @@ function Blogs() {
     getBlogs(blogQuery({ page: data.meta.pagination.page + 1, pageSize }));
   };
 
-  if (blogData.length < 1)
+  if (blogData.length < 1 && !isLoading)
     return (
       <Stack
         alignItems={"center"}

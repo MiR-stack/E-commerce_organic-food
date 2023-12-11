@@ -1,3 +1,5 @@
+"use client";
+
 import { RWebShare } from "react-web-share";
 
 const Share = ({ url, title, text, children }) => {

@@ -137,11 +137,11 @@ export const GetProduct = async (prefix, kind) => {
   }
 };
 
-export const getBlogs = async (query) => {
+export const getBlogs = async (query, { tags, cache }) => {
   const url = getStrapiUrl(`/blogs?${query}`);
 
   try {
-    return await getData(url, [], true);
+    return await getData(url, tags, cache);
   } catch (err) {
     throw new Error(err);
   }

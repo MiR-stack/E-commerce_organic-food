@@ -11,7 +11,7 @@ export const getCustomer = async (id, query) => {
   }
 };
 
-const customerQuery = qs.stringify({
+export const customerQuery = qs.stringify({
   populate: {
     avatar: {
       fields: ["alternativeText", "formats"],

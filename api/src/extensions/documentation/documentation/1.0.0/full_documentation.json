@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-12-10T07:21:55.771Z"
+    "x-generation-date": "2023-12-11T15:06:31.826Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1306,7 +1306,6 @@
           "data": {
             "required": [
               "title",
-              "slug",
               "permalink"
             ],
             "type": "object",
@@ -1331,9 +1330,6 @@
               "seo": {
                 "$ref": "#/components/schemas/SharedSeoComponent"
               },
-              "content": {
-                "type": "string"
-              },
               "urlToImage": {
                 "oneOf": [
                   {
@@ -1349,6 +1345,9 @@
                 "type": "string"
               },
               "permalink": {
+                "type": "string"
+              },
+              "content": {
                 "type": "string"
               }
             }
@@ -1405,7 +1404,6 @@
         "type": "object",
         "required": [
           "title",
-          "slug",
           "permalink"
         ],
         "properties": {
@@ -4947,9 +4945,6 @@
                                         }
                                       }
                                     },
-                                    "content": {
-                                      "type": "string"
-                                    },
                                     "urlToImage": {
                                       "type": "object",
                                       "properties": {
@@ -5095,6 +5090,9 @@
                                     "permalink": {
                                       "type": "string"
                                     },
+                                    "content": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -5202,9 +5200,6 @@
           },
           "seo": {
             "$ref": "#/components/schemas/SharedSeoComponent"
-          },
-          "content": {
-            "type": "string"
           },
           "urlToImage": {
             "type": "object",
@@ -5349,6 +5344,9 @@
             "type": "string"
           },
           "permalink": {
+            "type": "string"
+          },
+          "content": {
             "type": "string"
           },
           "createdAt": {
@@ -10189,9 +10187,6 @@
                                                                     }
                                                                   }
                                                                 },
-                                                                "content": {
-                                                                  "type": "string"
-                                                                },
                                                                 "urlToImage": {
                                                                   "type": "object",
                                                                   "properties": {
@@ -10335,6 +10330,9 @@
                                                                   "type": "string"
                                                                 },
                                                                 "permalink": {
+                                                                  "type": "string"
+                                                                },
+                                                                "content": {
                                                                   "type": "string"
                                                                 },
                                                                 "createdAt": {
@@ -17307,9 +17305,6 @@
                                                                     }
                                                                   }
                                                                 },
-                                                                "content": {
-                                                                  "type": "string"
-                                                                },
                                                                 "urlToImage": {
                                                                   "type": "object",
                                                                   "properties": {
@@ -17453,6 +17448,9 @@
                                                                   "type": "string"
                                                                 },
                                                                 "permalink": {
+                                                                  "type": "string"
+                                                                },
+                                                                "content": {
                                                                   "type": "string"
                                                                 },
                                                                 "createdAt": {
@@ -21510,9 +21508,6 @@
                                                                                 }
                                                                               }
                                                                             },
-                                                                            "content": {
-                                                                              "type": "string"
-                                                                            },
                                                                             "urlToImage": {
                                                                               "type": "object",
                                                                               "properties": {
@@ -21656,6 +21651,9 @@
                                                                               "type": "string"
                                                                             },
                                                                             "permalink": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "content": {
                                                                               "type": "string"
                                                                             },
                                                                             "createdAt": {
@@ -25846,9 +25844,6 @@
                                                                                   }
                                                                                 }
                                                                               },
-                                                                              "content": {
-                                                                                "type": "string"
-                                                                              },
                                                                               "urlToImage": {
                                                                                 "type": "object",
                                                                                 "properties": {
@@ -25992,6 +25987,9 @@
                                                                                 "type": "string"
                                                                               },
                                                                               "permalink": {
+                                                                                "type": "string"
+                                                                              },
+                                                                              "content": {
                                                                                 "type": "string"
                                                                               },
                                                                               "createdAt": {
@@ -30052,9 +30050,6 @@
                                         }
                                       }
                                     },
-                                    "content": {
-                                      "type": "string"
-                                    },
                                     "urlToImage": {
                                       "type": "object",
                                       "properties": {
@@ -30198,6 +30193,9 @@
                                       "type": "string"
                                     },
                                     "permalink": {
+                                      "type": "string"
+                                    },
+                                    "content": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -33983,9 +33981,6 @@
                                                                   }
                                                                 }
                                                               },
-                                                              "content": {
-                                                                "type": "string"
-                                                              },
                                                               "urlToImage": {
                                                                 "type": "object",
                                                                 "properties": {
@@ -34129,6 +34124,9 @@
                                                                 "type": "string"
                                                               },
                                                               "permalink": {
+                                                                "type": "string"
+                                                              },
+                                                              "content": {
                                                                 "type": "string"
                                                               },
                                                               "createdAt": {
@@ -38481,9 +38479,6 @@
                                         }
                                       }
                                     },
-                                    "content": {
-                                      "type": "string"
-                                    },
                                     "urlToImage": {
                                       "type": "object",
                                       "properties": {
@@ -38627,6 +38622,9 @@
                                       "type": "string"
                                     },
                                     "permalink": {
+                                      "type": "string"
+                                    },
+                                    "content": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -42342,9 +42340,6 @@
                                                                     }
                                                                   }
                                                                 },
-                                                                "content": {
-                                                                  "type": "string"
-                                                                },
                                                                 "urlToImage": {
                                                                   "type": "object",
                                                                   "properties": {
@@ -42488,6 +42483,9 @@
                                                                   "type": "string"
                                                                 },
                                                                 "permalink": {
+                                                                  "type": "string"
+                                                                },
+                                                                "content": {
                                                                   "type": "string"
                                                                 },
                                                                 "createdAt": {
@@ -46362,9 +46360,6 @@
                                                                   }
                                                                 }
                                                               },
-                                                              "content": {
-                                                                "type": "string"
-                                                              },
                                                               "urlToImage": {
                                                                 "type": "object",
                                                                 "properties": {
@@ -46508,6 +46503,9 @@
                                                                 "type": "string"
                                                               },
                                                               "permalink": {
+                                                                "type": "string"
+                                                              },
+                                                              "content": {
                                                                 "type": "string"
                                                               },
                                                               "createdAt": {

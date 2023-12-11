@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const relation = "api::product.product:";
-
 export const commentApi = createApi({
   reducerPath: "commentApi",
   baseQuery: fetchBaseQuery({
@@ -10,19 +8,19 @@ export const commentApi = createApi({
   tagTypes: ["productComments"],
   endpoints: (builder) => ({
     getProductComments: builder.query({
-      query: ({ id, url }) => ({
-        url: `${relation}${id}?${url || ""}`,
+      query: ({ modalName, id, url }) => ({
+        url: `${modalName}${id}?${url || ""}`,
       }),
       providesTags: ["productComments"],
     }),
     createProductComment: builder.mutation({
-      query: ({ id, content, threadOf, token }) => {
+      query: ({ modalName, id, content, threadOf, token }) => {
         let data = { content };
         if (threadOf) {
           data.threadOf = threadOf;
         }
         return {
-          url: `${relation}${id}`,
+          url: `${modalName}${id}`,
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -35,8 +33,8 @@ export const commentApi = createApi({
       invalidatesTags: ["productComments"],
     }),
     deleteProductComment: builder.mutation({
-      query: ({ productId, commentId, authorId, token }) => ({
-        url: `${relation}${productId}/comment/${commentId}?authorId=${authorId}`,
+      query: ({ modalName, componentId, commentId, authorId, token }) => ({
+        url: `${modalName}${componentId}/comment/${commentId}?authorId=${authorId}`,
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

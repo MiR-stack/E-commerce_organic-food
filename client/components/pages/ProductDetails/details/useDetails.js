@@ -1,11 +1,6 @@
-import { useGetProductCommentsQuery } from "../../../../store/apis/comment";
 import { useState } from "react";
-import qs from "qs";
 import { useGetReviewsQuery } from "../../../../store/apis/review";
-
-const commentsQuery = qs.stringify({
-  sort: ["createdAt:desc"],
-});
+import useComments from "../../../../hooks/useComments";
 
 function useDetails(id) {
   const [value, setValue] = useState(0);
@@ -13,16 +8,11 @@ function useDetails(id) {
     setValue(newValue);
   };
 
-  // FIXME: pagination is not working
-  const {
-    data: comments,
-    isLoading,
-    refetch: commentsRefetch,
-  } = useGetProductCommentsQuery({ id, url: commentsQuery });
-  const totalComments = comments?.reduce((acc, curr) => {
-    acc += curr.children.length + 1;
-    return acc;
-  }, 0);
+  // get comments funtionality
+  const { comments, totalComments, commentsRefetch } = useComments(
+    "api::product.product:",
+    id
+  );
 
   // reviews
   const [reviewsLimit, setReviewsLimit] = useState(5);
