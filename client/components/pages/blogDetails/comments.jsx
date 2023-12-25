@@ -10,7 +10,6 @@ function BlogComments({ id }) {
     modalName,
     id
   );
-  console.log(comments);
 
   return (
     <Stack gap={2}>

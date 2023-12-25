@@ -10,7 +10,7 @@ async function Author({ authorId }) {
     customerQuery
   );
 
-  const avatarUrl = getStrapiMedia(avatar.formats.thumbnail.url);
+  const avatarUrl = getStrapiMedia(avatar?.formats.thumbnail.url);
   const name = `${firstName} ${lastName}`;
 
   return (

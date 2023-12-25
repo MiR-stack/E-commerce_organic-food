@@ -1,4 +1,4 @@
-import { getFormatedImage } from "../utils";
+import { getFormatedImage, readingTimeCounter } from "../utils";
 
 const adapter = (blog) => {
   const { title, slug, permalink, description, content, urlToImage, profile } =
@@ -6,9 +6,7 @@ const adapter = (blog) => {
 
   const { srcs } = getFormatedImage(urlToImage);
 
-  const wordCount = content.replace(/[^\w ]/g, "").split(/\s+/).length;
-  const readingTime = Math.floor(wordCount / 228) + 1;
-
+  const readingTime = readingTimeCounter(content);
   return {
     slug,
     permalink,

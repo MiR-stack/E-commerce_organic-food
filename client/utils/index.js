@@ -137,6 +137,12 @@ export const GetProduct = async (prefix, kind) => {
   }
 };
 
+/**
+ *
+ * @param {string} query
+ * @param {{tags:Array,cache:('no-store'|'no-cache')}} options
+ * @returns
+ */
 export const getBlogs = async (query, { tags, cache }) => {
   const url = getStrapiUrl(`/blogs?${query}`);
 
@@ -212,4 +218,78 @@ export const isExist = (arr, cb) => {
     }
   }
   return false;
+};
+
+/**
+ *
+ * @param {string} content
+ * @returns {number} reading time
+ */
+export const readingTimeCounter = (content) => {
+  const wordCount = content.replace(/[^\w ]/g, "").split(/\s+/).length;
+  const readingTime = Math.floor(wordCount / 228) + 1;
+
+  return readingTime;
+};
+
+/**
+ *
+ * fetch for data from same category like related blogs or related products
+ * @param {[Object]} items
+ * @param {string} slug
+ * @param {Object} query
+ * @param {string} category
+ * @param {string} prefix
+ * @param {number} itemLimit
+ * @returns {[Object]}
+ */
+
+export const getRelatedItems = async (
+  items,
+  slug,
+  query,
+  category,
+  prefix,
+  itemLimit
+) => {
+  if (items.length > itemLimit) items;
+
+  // get all slugs
+  // slugs will be used in query for avoid blog duplication
+  const slugs = items.reduce(
+    (acc, cur) => {
+      acc.push(cur.attributes.slug);
+      return acc;
+    },
+    [slug]
+  );
+
+  // creating query
+  const itemsQuery = qs.stringify({
+    populate: ["category"],
+    filters: {
+      category: {
+        slug: {
+          $eq: category,
+        },
+      },
+      slug: {
+        $ne: slugs,
+      },
+    },
+    pagination: {
+      limit: itemLimit - items.length,
+    },
+    ...query,
+  });
+
+  // get full url
+  const url = getStrapiUrl(`/${prefix}?${itemsQuery}`);
+
+  // fetch data
+  const data = await getData(url, [prefix, slug]);
+
+  items = [...items, ...data.data];
+
+  return items;
 };

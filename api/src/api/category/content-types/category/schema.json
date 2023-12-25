@@ -55,12 +55,20 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "category"
     }
   }
 }

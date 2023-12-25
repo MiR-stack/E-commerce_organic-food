@@ -18,7 +18,7 @@ function Content({ title, content, urlToImage, permalink, authorId }) {
         <Typography
           variant="h3"
           component={"h1"}
-          sx={{ mt: 4, fontFamily: "'Teko', sans-serif" }}
+          sx={{ fontFamily: "'Teko', sans-serif" }}
         >
           {title}{" "}
         </Typography>

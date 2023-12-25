@@ -1,8 +1,9 @@
 import qs from "qs";
 import { getBlogs } from "../../../utils";
-import { Container } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Main from "../../../components/pages/blogDetails";
+import Sidebar from "../../../components/pages/blogDetails/sidebar";
 
 async function BlogDetails({ params }) {
   const blogQuery = qs.stringify({
@@ -12,6 +13,16 @@ async function BlogDetails({ params }) {
       },
       urlToImage: {
         populate: "*",
+      },
+      related_blogs: {
+        populate: ["urlToImage"],
+        fields: ["title", "slug", "description", "content", "updatedAt"],
+      },
+      category: {
+        fields: ["slug", "name"],
+      },
+      tags: {
+        fields: ["slug", "name"],
       },
     },
     filters: {
@@ -26,8 +37,17 @@ async function BlogDetails({ params }) {
     cache: false,
   });
 
-  const { title, content, urlToImage, permalink, profile } =
-    blog.data[0].attributes;
+  const {
+    slug,
+    title,
+    content,
+    urlToImage,
+    permalink,
+    profile,
+    category,
+    related_blogs,
+    tags,
+  } = blog.data[0].attributes;
 
   const contentProps = {
     title,
@@ -38,10 +58,19 @@ async function BlogDetails({ params }) {
   };
 
   return (
-    <Container>
-      <Grid container>
+    <Container sx={{ mt: { sm: 3, xs: 2 } }}>
+      <Grid container gap={3}>
         <Grid md={8}>
           <Main contentProps={contentProps} id={blog.data[0].id} />
+        </Grid>
+        <Divider orientation="vertical" flexItem />
+        <Grid md={3}>
+          <Sidebar
+            related_blogs={related_blogs?.data}
+            slug={slug}
+            category={category}
+            tags={tags}
+          />
         </Grid>
       </Grid>
     </Container>
