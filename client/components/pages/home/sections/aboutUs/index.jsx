@@ -4,7 +4,7 @@ import { getData, getStrapiUrl } from "../../../../../utils";
 
 async function AboutUs() {
   const url = getStrapiUrl("/about-us?populate=goals");
-  const { data } = await getData(url, ["habout"]);
+  const { data } = await getData(url, ["homeAbout"]);
   return (
     <Grid container justifyContent={"center"}>
       {data.attributes.goals.map((goal) => (
