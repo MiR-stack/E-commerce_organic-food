@@ -2,6 +2,7 @@ import Hero from "../components/pages/home/hero/hero";
 import { getData, getStrapiUrl } from "../utils";
 import qs from "qs";
 import BlockManger from "../components/pages/home/blockManager/blockManager";
+import Newsletter from "../components/shared/newsletter";
 
 async function Home() {
   const pageQuery = qs.stringify({
@@ -25,6 +26,7 @@ async function Home() {
       {blocks.map((block) => (
         <BlockManger data={block} key={block.id} />
       ))}
+      <Newsletter divider={false} />
     </div>
   );
 }

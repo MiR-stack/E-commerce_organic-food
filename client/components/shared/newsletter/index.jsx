@@ -11,7 +11,7 @@ import {
 import { getData, getStrapiUrl } from "../../../utils";
 import Subscribe from "./subscribe";
 
-async function Newsletter({ widht = "lg" }) {
+async function Newsletter({ widht = "lg", divider = true }) {
   const url = getStrapiUrl("/shared?populate=newsletter");
 
   const { data } = await getData(url, ["revalidate", "newsletter"]);
@@ -21,7 +21,7 @@ async function Newsletter({ widht = "lg" }) {
   return (
     <>
       <Container maxWidth={widht}>
-        <Divider />
+        {divider ? <Divider /> : ""}
         <Stack
           direction={{ md: "row" }}
           gap={3}
