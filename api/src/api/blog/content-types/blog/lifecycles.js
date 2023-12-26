@@ -10,7 +10,7 @@ module.exports = {
 const beforeActions = (event) => {
   let { title, slug } = event.params.data;
 
-  title = title.replace(/[^a-zA-Z0-9 ]/g, "");
+  title = title?.replace(/[^a-zA-Z0-9 ]/g, "");
   slug = slug?.replace(/[^a-zA-Z0-9 ]/g, "-");
 
   const newSlug = title?.trim().toLowerCase().split(" ").join("-");
