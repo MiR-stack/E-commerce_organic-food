@@ -74,8 +74,8 @@ function User({ logoutOptions, loginOptions }) {
     dispatch(handleToken(""));
   };
 
-  logoutOptions.forEach((option) => {
-    if (option.label === "log in") {
+  loginOptions.forEach((option) => {
+    if (option.label === "login") {
       option.onClick = handleOpen("login");
       option.dispatchable = true;
     } else if (option.label === "register") {
@@ -83,7 +83,7 @@ function User({ logoutOptions, loginOptions }) {
       option.dispatchable = true;
     }
   });
-  loginOptions.forEach((option) => {
+  logoutOptions.forEach((option) => {
     if (option.label === "logout") {
       option.onClick = handleLogout;
     }
@@ -124,7 +124,7 @@ function User({ logoutOptions, loginOptions }) {
         open={open}
         anchorEl={anchorEl}
         handleClose={handleClose}
-        links={isLoggedIn ? loginOptions : logoutOptions}
+        links={isLoggedIn ? logoutOptions : loginOptions}
       />
     </div>
   );

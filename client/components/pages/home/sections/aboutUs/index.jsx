@@ -1,10 +1,12 @@
 import { Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { getData, getStrapiUrl } from "../../../../../utils";
+import { MASTER_TAG } from "../../../../../constants";
 
 async function AboutUs() {
   const url = getStrapiUrl("/about-us?populate=goals");
-  const { data } = await getData(url, ["homeAbout"]);
+
+  const { data } = await getData(url, [MASTER_TAG, "homeAbout"]);
   return (
     <Grid container justifyContent={"center"}>
       {data.attributes.goals.map((goal) => (

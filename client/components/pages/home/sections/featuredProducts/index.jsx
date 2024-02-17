@@ -1,10 +1,10 @@
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import React from "react";
-import { GetProduct } from "../../../../../utils";
+import { getProduct } from "../../../../../utils";
 import Card from "./card";
 
 async function FeaturedProduts() {
-  const products = await GetProduct("products", "featured");
+  const products = await getProduct("products", "featured");
 
   return (
     <Grid container spacing={{ xs: 3, lg: 4 }}>

@@ -10,6 +10,7 @@ import {
 import CardFooter from "./cardFooter";
 import { getStrapiMedia } from "../../../utils/index";
 import Link from "next/link";
+import { CustomImage } from "../../utils";
 
 const defaultConfig = {
   direction: "column",
@@ -21,25 +22,25 @@ const defaultConfig = {
 function ProductCard({ data, config }) {
   config = { ...defaultConfig, ...config };
   const { images, name, avarageRating, salePrice, price, discount } = data;
-  const { url, name: alt } = images.data[0].attributes.formats.thumbnail;
-  const thumbnail = getStrapiMedia(url);
-  data.thumbnail = thumbnail;
+  const { url, name: alt } = images.data[0].attributes.formats.small;
+  const small = getStrapiMedia(url);
+  data.small = small;
 
   return (
     <Card
       sx={{ display: config.direction, height: "100%", alignItems: "center" }}
     >
       <Link href={`/products/${data.slug}`} passHref legacyBehavior>
-        <CardMedia
-          component={"img"}
-          height={config.mediaHeight}
-          src={thumbnail}
+        <CustomImage
+          src={small}
           alt={alt}
-          sx={{
+          height={config.mediaHeight}
+          styles={{
             minWidth: config.mediaWidth,
             width: config.mediaWidth,
             cursor: "pointer",
           }}
+          sizes={`(max-width:600px) 100vw, (max-width:1200px) 40vw, 30vw`}
         />
       </Link>
       <CardContent

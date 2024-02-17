@@ -10,11 +10,12 @@ import {
 } from "@mui/material";
 import { getData, getStrapiUrl } from "../../../utils";
 import Subscribe from "./subscribe";
+import { MASTER_TAG } from "../../../constants";
 
 async function Newsletter({ widht = "lg", divider = true }) {
   const url = getStrapiUrl("/shared?populate=newsletter");
 
-  const { data } = await getData(url, ["revalidate", "newsletter"]);
+  const { data } = await getData(url, [MASTER_TAG, "newsletter"]);
   const { title, shortDescription, placeholder, buttonLabel } =
     data.attributes.newsletter;
 

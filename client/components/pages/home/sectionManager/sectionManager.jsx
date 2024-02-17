@@ -16,7 +16,7 @@ async function SectionManager({ sectionFor }) {
       return <Categories categories={categoriesData} />;
     case "latestProducts":
       return <LatestProducts />;
-    case "storeReviews":
+    case "testimonials":
       return <Testimonials />;
     case "aboutUs":
       return <AboutUs />;

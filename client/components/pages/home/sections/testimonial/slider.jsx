@@ -49,7 +49,7 @@ function TestimonialSlider({ testimonials }) {
           rating,
         };
         return (
-          <SwiperSlide key={testimonial.id}>
+          <SwiperSlide key={testimonial.id} style={{ padding: "20px 0" }}>
             <TestimonialCard {...data} />
           </SwiperSlide>
         );

@@ -1,8 +1,12 @@
 import qs from "qs";
-
-export const getStrapiUrl = (url) => {
-  return `${process.env.STRAPI_URL}${url}`;
-};
+import { getProduct } from "./product";
+import {
+  getStrapiURL,
+  getCategories,
+  getQuery,
+  getValues,
+  mixArray,
+} from "./utils";
 
 /**
  *
@@ -38,33 +42,18 @@ export const getGlobalData = async () => {
       },
     },
   });
-  const url = getStrapiUrl(`/global?${query}`);
+  const url = getStrapiURL(`/global?${query}`);
 
   return (await fetch(url, { next: { tags: ["global"] } })).json();
 };
 
 export const getBanner = async (page) => {
-  const url = getStrapiUrl(`/banners?filters[for][$eq]=${page}&populate=*`);
+  const url = getStrapiURL(`/banners?filters[for][$eq]=${page}&populate=*`);
   const res = await getData(url, ["banner"]);
   let { bgImage, name, breadcrumb } = res.data[0].attributes;
   const { srcs, alt } = getFormatedImage(bgImage);
 
   return { name, srcs, alt, breadcrumb };
-};
-
-export const getCategories = async (variant) => {
-  const variants = {
-    short: {
-      fields: ["name", "slug"],
-    },
-    home: {
-      fields: ["name", "slug", "totalProduct"],
-      populate: ["products", "image"],
-    },
-  };
-
-  const url = getStrapiUrl(`/categories?${qs.stringify(variants[variant])}`);
-  return await getData(url, ["category"]);
 };
 
 export function getStrapiMedia(url) {
@@ -74,68 +63,8 @@ export function getStrapiMedia(url) {
   if (url.startsWith("http") || url.startsWith("//")) {
     return url;
   }
-  return `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337"}${url}`;
+  return `${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337"}${url}`;
 }
-
-/**
- *
- * @param {String} prefix  prefix can be singular or plural like product or products
- * @param {String} kind there is many predefined kind feautured,latest and defaults
- * @return {Promise}
- */
-export const GetProduct = async (prefix, kind) => {
-  const queries = {
-    default: {
-      populate: ["images"],
-      fields: [
-        "name",
-        "avarageRating",
-        "ratingCount",
-        "slug",
-        "price",
-        "salePrice",
-        "discount",
-      ],
-    },
-    featured: {
-      filters: {
-        featured: {
-          $eq: true,
-        },
-      },
-      fields: [
-        "name",
-        "avarageRating",
-        "ratingCount",
-        "shortDescription",
-        "slug",
-        "price",
-        "salePrice",
-        "discount",
-      ],
-      pagination: {
-        limit: 6,
-      },
-    },
-    latest: {
-      sort: ["createdAt:desc"],
-      pagination: {
-        limit: 9,
-      },
-    },
-  };
-
-  const url = getStrapiUrl(
-    `/${prefix}?${qs.stringify({ ...queries.default, ...queries[kind] })}`
-  );
-
-  try {
-    const data = await fetch(url, { cache: "no-store" });
-    return data.json();
-  } catch (e) {
-    throw new Error(e);
-  }
-};
 
 /**
  *
@@ -144,7 +73,7 @@ export const GetProduct = async (prefix, kind) => {
  * @returns
  */
 export const getBlogs = async (query, { tags, cache }) => {
-  const url = getStrapiUrl(`/blogs?${query}`);
+  const url = getStrapiURL(`/blogs?${query}`);
 
   try {
     return await getData(url, tags, cache);
@@ -284,7 +213,7 @@ export const getRelatedItems = async (
   });
 
   // get full url
-  const url = getStrapiUrl(`/${prefix}?${itemsQuery}`);
+  const url = getStrapiURL(`/${prefix}?${itemsQuery}`);
 
   // fetch data
   const data = await getData(url, [prefix, slug]);
@@ -292,4 +221,13 @@ export const getRelatedItems = async (
   items = [...items, ...data.data];
 
   return items;
+};
+
+export {
+  getProduct,
+  getStrapiURL as getStrapiUrl,
+  getCategories,
+  getQuery,
+  getValues,
+  mixArray,
 };

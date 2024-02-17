@@ -2,28 +2,40 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  CardMedia,
   Stack,
   Typography,
 } from "@mui/material";
 import Link from "next/link";
 import { Schedule } from "@mui/icons-material";
+import { CustomImage } from "../../utils";
 
 function BlogCard({ title, description, image, author, readTime }) {
-  console.log(image.url);
   return (
     <Card sx={{ height: "100%" }}>
       <Link href={`/blogs/${title}`} legacyBehavior>
         <CardActionArea>
-          <CardMedia image={image.url} alt={image.alt} sx={{ height: 200 }} />
+          <CustomImage
+            src={image.url}
+            alt={image.alt}
+            height={200}
+            width={"100%"}
+            sizes={`(max-widht:600px) 100vw, (max-widht:1200px) 40vw, 30vw`}
+          />
           <CardContent>
             <Typography
               variant="h4"
-              sx={{ ":hover": { textDecoration: "underline" } }}
+              sx={{
+                ":hover": { textDecoration: "underline" },
+                maxHeight: 80,
+                overflow: "hidden",
+              }}
             >
               {title.length > 50 ? `${`${title}`.substring(0, 50)}...` : title}{" "}
             </Typography>
-            <Typography variant="body1" sx={{ py: 1 }}>
+            <Typography
+              variant="body1"
+              sx={{ py: 1, maxHeight: "6.5rem", overflow: "hidden" }}
+            >
               {description.length > 200
                 ? `${`${description}`.substring(0, 200)}...`
                 : description}{" "}

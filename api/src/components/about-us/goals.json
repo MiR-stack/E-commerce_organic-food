@@ -13,14 +13,7 @@
       "maxLength": 20
     },
     "description": {
-      "type": "customField",
-      "options": {
-        "output": "HTML",
-        "preset": "rich",
-        "maxLengthCharacters": null
-      },
-      "required": true,
-      "customField": "plugin::ckeditor.CKEditor"
+      "type": "text"
     }
   }
 }

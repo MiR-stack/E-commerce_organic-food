@@ -25,11 +25,6 @@
         "home.offer",
         "home.brands"
       ]
-    },
-    "aboutUs": {
-      "type": "component",
-      "repeatable": true,
-      "component": "home.about-us"
     }
   }
 }

@@ -1,14 +1,19 @@
-import { Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import { CssBaseline, Toolbar } from "@mui/material";
 import Navbar from "../components/global/navbar";
 import { getCategories, getGlobalData } from "../utils";
-import Providers from "../store/providers";
+import Providers from "../providers/providers";
 import ThemeRegistry from "../theme/ThemeRegistry";
 import Footer from "../components/global/footer";
-import SnackbarProvider from "../components/utils/snackbarProvider";
+import SnackbarProvider from "../providers/snackbarProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+  variable: "--font-roboto",
+});
 
 export const metadata = {
   title: "Unicron",
@@ -27,19 +32,12 @@ export default async function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Smooch&family=Teko:wght@300;400&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`${roboto.variable} ${inter.variable}`}
+      style={{ fontFamily: "var(--font-roboto)" }}
+    >
+      <head></head>
       <body className={inter.className}>
         <Providers>
           <ThemeRegistry options={{ key: "mui" }}>

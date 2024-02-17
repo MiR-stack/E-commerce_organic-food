@@ -5,9 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Box, Typography, Button, Stack } from "@mui/material";
-import Image from "next/image";
 import { getStrapiMedia } from "../../../../utils";
-import { Backdrop } from "../../../utils";
+import { Backdrop, CustomImage } from "../../../utils";
 import styled from "@emotion/styled";
 import Link from "next/link";
 
@@ -26,15 +25,13 @@ const Offer = ({
 
   return (
     <>
-      <Image
+      <CustomImage
         src={src}
         alt={alternativeText}
-        fill
         priority
-        style={{
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
+        height={"100%"}
+        width={"100%"}
+        styles={{ position: "absolute" }}
       />
       <Backdrop />
       <Content

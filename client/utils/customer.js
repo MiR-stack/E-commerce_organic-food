@@ -1,5 +1,7 @@
 import qs from "qs";
 import { getStrapiUrl } from "./index";
+import { getData, getQuery, getValues } from "./utils";
+import { MASTER_TAG } from "../constants";
 
 export const getCustomer = async (id, query) => {
   const url = getStrapiUrl(`/users/${id}?${query}`);
@@ -20,24 +22,42 @@ export const customerQuery = qs.stringify({
   fields: ["firstName", "lastName"],
 });
 
+/*=============================================
+=            getCustomers function            =
+=============================================*/
+
+/**
+ * @typedef {object} testimonials
+ * @property {object} data
+ * @property {object} customeQuery
+ */
+
 /**
  *
- * @param {Array} data array of testimonials
+ * @param {testimonials} props array of testimonials
  * @returns {Array} testimonials with customer feild
  */
-export async function addCustomer(data) {
-  const customers = [];
+export async function getCustomers({ ids, customeQuery }) {
+  const defaultQuery = {
+    populate: {
+      avatar: {
+        fields: ["alternativeText", "formats"],
+      },
+    },
+    fields: ["firstName", "lastName"],
+    filters: {
+      id: {
+        $in: ids,
+      },
+    },
+  };
 
-  for (let i = 0; i < data.length; i++) {
-    const customer = await getCustomer(
-      data[i].attributes.customer_id,
-      customerQuery
-    );
-    customers[customers.length] = {
-      id: data[i].id,
-      ...data[i].attributes,
-      customer,
-    };
-  }
-  return customers;
+  const query = getQuery(defaultQuery, customeQuery);
+
+  return await getData(`/users?${query}`, {
+    authorization: process.env.NEXT_PUBLIC_APP_TOKEN,
+    tags: [MASTER_TAG, "customers"],
+  });
 }
+
+/*=====  End of getCustomers function  ======*/

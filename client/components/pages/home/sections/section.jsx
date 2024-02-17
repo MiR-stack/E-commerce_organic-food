@@ -36,11 +36,11 @@ function Section({
           </Typography>
         )}
       </Stack>
-      <Box sx={{ py: 4, maxWidth: "100%" }}>
+      <Box sx={{ py: 4, width: "100%" }}>
         <Container maxWidth="lg">
-          <span>
+          <section>
             <SectionManager sectionFor={sectionFor} />
-          </span>
+          </section>
         </Container>
       </Box>
       {ctaButton ? (

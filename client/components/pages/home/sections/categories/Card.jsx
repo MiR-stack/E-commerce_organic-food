@@ -16,6 +16,7 @@ const Card = ({ name, slug, totalProduct, image }) => {
           cursor: "pointer",
           borderRadius: "10px",
           overflow: "hidden",
+          textAlign: "center",
         }}
         style={{ backgroundRepeat: "no-repeat", backgroundSize: "cover" }}
         component={"div"}
@@ -28,7 +29,7 @@ const Card = ({ name, slug, totalProduct, image }) => {
           color={"common.white"}
         >
           <Typography variant="h6">
-            {name.length > 16 ? `${`${name}`.substring(0, 15)}...` : name}{" "}
+            {name.length > 14 ? `${`${name}`.substring(0, 13)}...` : name}{" "}
           </Typography>
           <Typography variant="subtitle1">{totalProduct} products </Typography>
         </Stack>

@@ -1,9 +1,9 @@
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { GetProduct } from "../../../../../utils/index";
+import { getProduct } from "../../../../../utils";
 import ProductCard from "../../../../shared/productCard";
 
 async function LatestProduts() {
-  const products = await GetProduct("products", "latest");
+  const products = await getProduct("products", "latest");
 
   return (
     <Grid container spacing={{ xs: 2, md: 3 }}>
@@ -21,7 +21,7 @@ async function LatestProduts() {
                   favoriteLg: false,
                   size: "small",
                   direction: "flex",
-                  mediaHeight: "120",
+                  mediaHeight: "100%",
                   mediaWidth: "35%",
                 }}
               />

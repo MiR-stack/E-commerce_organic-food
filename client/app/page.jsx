@@ -3,6 +3,7 @@ import { getData, getStrapiUrl } from "../utils";
 import qs from "qs";
 import BlockManger from "../components/pages/home/blockManager/blockManager";
 import Newsletter from "../components/shared/newsletter";
+import { MASTER_TAG } from "../constants";
 
 async function Home() {
   const pageQuery = qs.stringify({
@@ -17,7 +18,7 @@ async function Home() {
   });
 
   const pageUrl = getStrapiUrl(`/landing-page?${pageQuery}`);
-  const pageData = await getData(pageUrl, ["home"]);
+  const pageData = await getData(pageUrl, [MASTER_TAG, "home"]);
   const { heroSection, blocks } = pageData.data.attributes;
 
   return (

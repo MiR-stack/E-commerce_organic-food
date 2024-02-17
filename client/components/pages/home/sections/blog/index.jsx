@@ -1,7 +1,9 @@
 import qs from "qs";
-import { getData, getFormatedImage, getStrapiUrl } from "../../../../../utils";
+import { getFormatedImage } from "../../../../../utils";
 import BlogCard from "../../../../shared/blogCard";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { getData } from "../../../../../utils/utils";
+import { MASTER_TAG } from "../../../../../constants";
 const query = qs.stringify({
   populate: {
     profile: {
@@ -18,8 +20,11 @@ const query = qs.stringify({
 });
 
 async function Blog() {
-  const url = getStrapiUrl(`/blogs?${query}`);
-  const blogsData = await getData(url);
+  const blogsData = await getData(`/blogs?${query}`, {
+    authorization: process.env.NEXT_PUBLIC_APP_TOKEN,
+    revalidation: 60 * 60 * 24,
+    tags: [MASTER_TAG, "blogs"],
+  });
 
   const blogs = blogsData.data.map((blog) => {
     const { title, description, profile, urlToImage } = blog.attributes;
