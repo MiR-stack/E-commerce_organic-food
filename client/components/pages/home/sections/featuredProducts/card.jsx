@@ -30,8 +30,8 @@ function ProductCard({
     slug,
   },
 }) {
-  const { url, name: alt } = images.data[0].attributes.formats.thumbnail;
-  const thumbnail = getStrapiMedia(url);
+  const { url, name: alt } = images.data[0].attributes.formats.small;
+  const image = getStrapiMedia(url);
 
   return (
     <Card sx={{ maxWidth: { sm: "345px", xs: "100%" }, pb: 1 }}>
@@ -39,7 +39,7 @@ function ProductCard({
         <CardMedia
           component={"img"}
           height={"180px"}
-          image={thumbnail}
+          image={image}
           alt={alt}
           sx={{ cursor: "pointer" }}
         />
@@ -86,7 +86,7 @@ function ProductCard({
         </Stack>
       </CardContent>
       <Box sx={{ px: 1, pb: 1 }}>
-        <CardFooter data={{ id, name, salePrice, price, thumbnail }} />
+        <CardFooter data={{ id, name, salePrice, price, image }} />
       </Box>
     </Card>
   );

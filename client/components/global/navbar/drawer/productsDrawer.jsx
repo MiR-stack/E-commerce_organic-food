@@ -90,7 +90,7 @@ function ProductsDrawer({
                       }}
                     >
                       <Image
-                        src={product.thumbnail}
+                        src={product.image}
                         alt={product.name}
                         height={80}
                         width={100}

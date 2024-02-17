@@ -4,6 +4,7 @@ import { Container, Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Main from "../../../components/pages/blogDetails";
 import Sidebar from "../../../components/pages/blogDetails/sidebar";
+import { MASTER_TAG } from "../../../constants";
 
 async function BlogDetails({ params }) {
   const blogQuery = qs.stringify({
@@ -33,7 +34,7 @@ async function BlogDetails({ params }) {
   });
 
   const blog = await getBlogs(blogQuery, {
-    tags: ["blogDetails", params.slug],
+    tags: [MASTER_TAG, params.slug],
     cache: false,
   });
 

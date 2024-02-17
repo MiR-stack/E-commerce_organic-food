@@ -7,9 +7,12 @@ export const blogsApi = createApi({
   }),
   endpoints: (builder) => ({
     getBlogs: builder.mutation({
-      query: (query) => ({
+      query: (query, token) => ({
         url: `?${query}`,
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${token || process.env.NEXT_PUBLIC_APP_TOKEN}`,
+        },
       }),
     }),
   }),

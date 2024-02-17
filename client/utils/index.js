@@ -72,14 +72,20 @@ export function getStrapiMedia(url) {
  * @param {{tags:Array,cache:('no-store'|'no-cache')}} options
  * @returns
  */
-export const getBlogs = async (query, { tags, cache }) => {
+export const getBlogs = async (query, { tags, cache, token }) => {
   const url = getStrapiURL(`/blogs?${query}`);
 
-  try {
-    return await getData(url, tags, cache);
-  } catch (err) {
-    throw new Error(err);
-  }
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token || process.env.NEXT_PUBLIC_APP_TOKEN}`,
+    },
+    cache: cache ? "default" : "no-store",
+    next: {
+      tags: tags,
+    },
+  });
+
+  return await res.json();
 };
 
 export const getFormatedImage = (image) => {

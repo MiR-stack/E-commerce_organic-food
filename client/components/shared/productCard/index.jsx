@@ -1,15 +1,7 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Stack,
-  Rating,
-  Link as MuiLink,
-} from "@mui/material";
+import { Card, CardContent, Typography, Stack, Rating } from "@mui/material";
 import CardFooter from "./cardFooter";
 import { getStrapiMedia } from "../../../utils/index";
-import Link from "next/link";
+import Link from "../../utils/link";
 import { CustomImage } from "../../utils";
 
 const defaultConfig = {
@@ -24,22 +16,26 @@ function ProductCard({ data, config }) {
   const { images, name, avarageRating, salePrice, price, discount } = data;
   const { url, name: alt } = images.data[0].attributes.formats.small;
   const small = getStrapiMedia(url);
-  data.small = small;
+  data.image = small;
 
   return (
     <Card
       sx={{ display: config.direction, height: "100%", alignItems: "center" }}
     >
-      <Link href={`/products/${data.slug}`} passHref legacyBehavior>
+      <Link
+        href={`/products/${data.slug}`}
+        styles={{
+          display: "block",
+          height: config.mediaHeight,
+          width: config.mediaWidth,
+          minWidth: config.mediaWidth,
+        }}
+      >
         <CustomImage
           src={small}
           alt={alt}
-          height={config.mediaHeight}
-          styles={{
-            minWidth: config.mediaWidth,
-            width: config.mediaWidth,
-            cursor: "pointer",
-          }}
+          height={"100%"}
+          width={"100%"}
           sizes={`(max-width:600px) 100vw, (max-width:1200px) 40vw, 30vw`}
         />
       </Link>
@@ -49,10 +45,13 @@ function ProductCard({ data, config }) {
           px: { xs: 1, sm: 2 },
           pb: "10px !important",
           width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
         }}
       >
-        <Link href={`/products/${data.slug}`} passHref legacyBehavior>
-          <MuiLink color={"inherit"} underline="hover">
+        <div>
+          <Link href={`/products/${data.slug}`}>
             <Typography
               variant="subtitle1"
               component="h2"
@@ -60,25 +59,25 @@ function ProductCard({ data, config }) {
             >
               {name}
             </Typography>
-          </MuiLink>
-        </Link>
-        <Stack direction={"row"} gap={1} alignItems="center">
-          <Rating value={avarageRating} size={config.size} readOnly />
-          <span style={{ fontSize: "13px" }}>{avarageRating} </span>
-        </Stack>
-        <Stack direction={"row"} alignItems={"center"} gap={1}>
-          <Typography variant="subtitle2">${salePrice} </Typography>
-          {discount ? (
-            <Typography
-              variant="subtitle2"
-              sx={{ textDecoration: "line-through" }}
-            >
-              ${price}
-            </Typography>
-          ) : (
-            ""
-          )}
-        </Stack>
+          </Link>
+          <Stack direction={"row"} gap={1} alignItems="center">
+            <Rating value={avarageRating} size={config.size} readOnly />
+            <span style={{ fontSize: "13px" }}>{avarageRating} </span>
+          </Stack>
+          <Stack direction={"row"} alignItems={"center"} gap={1}>
+            <Typography variant="subtitle2">${salePrice} </Typography>
+            {discount ? (
+              <Typography
+                variant="subtitle2"
+                sx={{ textDecoration: "line-through" }}
+              >
+                ${price}
+              </Typography>
+            ) : (
+              ""
+            )}
+          </Stack>
+        </div>
         <CardFooter data={data} config={config} />
       </CardContent>
     </Card>

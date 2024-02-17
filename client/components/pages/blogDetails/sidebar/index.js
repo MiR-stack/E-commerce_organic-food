@@ -29,7 +29,7 @@ function Sidebar({ related_blogs, slug, category, tags }) {
           <RecentBlogs />
         </span>
       </Grid>
-      <span>{tags.data?.length > 0 ? <Tags tags={tags.data} /> : ""}</span>
+      <span>{tags?.data?.length > 0 ? <Tags tags={tags.data} /> : ""}</span>
     </Grid>
   );
 }

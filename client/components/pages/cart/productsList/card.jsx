@@ -10,7 +10,7 @@ import {
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 function CartProductCart({ product }) {
-  const { id, thumbnail, name, price, salePrice, quantity } = product;
+  const { id, image, name, price, salePrice, quantity } = product;
 
   //   handle quantity
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ function CartProductCart({ product }) {
         <Stack direction={"row"} spacing={2}>
           <Box sx={{ height: 80, width: 100, position: "relative" }}>
             <Image
-              src={thumbnail}
+              src={image}
               alt={name}
               fill
               sizes="30vh"
