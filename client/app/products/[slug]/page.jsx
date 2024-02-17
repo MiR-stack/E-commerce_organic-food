@@ -1,11 +1,13 @@
 import { Container } from "@mui/material";
-import { getData, getStrapiMedia, getStrapiUrl } from "../../../utils";
+import { getStrapiMedia } from "../../../utils";
+import { getData } from "../../../utils/utils";
 import ShortView from "../../../components/shared/productShortView";
 import qs from "qs";
 import variationsAdapter from "../../../adapters/variations";
 import Details from "../../../components/pages/ProductDetails/details";
 import CustomBreadcrumbs from "../../../components/shared/Breadcrumbs";
 import RelatedProucts from "../../../components/pages/ProductDetails/relatedProducts";
+import { MASTER_TAG } from "../../../constants";
 
 // TODO: we will work with variations
 async function ProductDetails({ params }) {
@@ -51,8 +53,11 @@ async function ProductDetails({ params }) {
     },
   });
 
-  const url = getStrapiUrl(`/products?${productQuery}`);
-  const products = await getData(url, ["productDetails", params.slug]);
+  const products = await getData(`/products?${productQuery}`, {
+    authorization: process.env.NEXT_PUBLIC_APP_TOKEN,
+    tags: [MASTER_TAG, params.slug],
+  });
+
   const {
     id,
     attributes: {

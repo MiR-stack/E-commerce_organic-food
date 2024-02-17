@@ -19,9 +19,10 @@
       "component": "about-us.goals"
     },
     "about": {
+      "displayName": "about",
       "type": "component",
       "repeatable": false,
-      "component": "about-us.goals"
+      "component": "about-us.about"
     }
   }
 }

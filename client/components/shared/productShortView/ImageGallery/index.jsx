@@ -31,6 +31,7 @@ export default function ImageGallery({ images, variant }) {
       type: "parent",
     };
   });
+
   images.variations?.forEach((variation) => {
     const { srcs, alt } = getFormatedImage(variation.image);
     swiperImages.push({ id: variation.id, srcs, alt, type: "variant" });
@@ -48,7 +49,9 @@ export default function ImageGallery({ images, variant }) {
         loop
         spaceBetween={10}
         navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
+        thumbs={{
+          swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+        }}
         modules={[FreeMode, Navigation, Thumbs]}
         className={`${mySwiper2} ${swiper}`}
       >
